@@ -1,8 +1,17 @@
-# 1Panel Scripts Collection
+# 1Panel Resources
 
 [1Panel](https://github.com/1Panel-dev/1Panel) is a modern, open-source Linux server management panel.
 
-This project provides a collection of essential 1Panel scripts to streamline and enhance server operations.
+This project provides the resources used by 1Panel, including installation scripts, vLLM command templates and a curated model list.
+
+## Repository Structure
+
+```
+resources/
+├── scripts/            # installation scripts
+├── vllm-templates/     # vLLM command templates
+└── featured-models/    # curated model list
+```
 
 ## Issue Reporting
 
