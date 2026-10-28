@@ -1,0 +1,36 @@
+name: Publish resource to OSS
+description: Install ossutil and publish one resource with its version marker last.
+
+inputs:
+  resource:
+    description: Resource directory to publish.
+    required: true
+  oss-directory:
+    description: Destination OSS directory.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Check OSS credentials
+      shell: bash
+      run: |
+        set -euo pipefail
+        : "${OSS_ACCESS_KEY_ID:?Set the OSS_ACCESS_KEY_ID repository secret}"
+        : "${OSS_ACCESS_KEY_SECRET:?Set the OSS_ACCESS_KEY_SECRET repository secret}"
+        : "${OSS_ENDPOINT:?Set the OSS_ENDPOINT repository secret}"
+
+    - name: Setup OSSUTIL
+      uses: yizhoumo/setup-ossutil@v2
+      with:
+        endpoint: ${{ env.OSS_ENDPOINT }}
+        access-key-id: ${{ env.OSS_ACCESS_KEY_ID }}
+        access-key-secret: ${{ env.OSS_ACCESS_KEY_SECRET }}
+        ossutil-version: '1.7.18'
+
+    - name: Package and upload resource
+      shell: bash
+      env:
+        RESOURCE: ${{ inputs.resource }}
+        OSS_DIRECTORY: ${{ inputs.oss-directory }}
+      run: bash .github/scripts/publish-resource.sh "$RESOURCE" "$OSS_DIRECTORY"
