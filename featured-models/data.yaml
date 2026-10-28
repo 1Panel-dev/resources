@@ -1,11 +1,14 @@
 # Parameter counts are strings in billions (B).
 # N/A means not applicable; undisclosed means not publicly disclosed.
 # approximateWeightSizeGB describes weight storage size, not runtime GPU memory.
+# sources lists available download platforms in preference order: modelscope, huggingface.
+# Each source must provide the exact repository ID in name; differently named mirrors are excluded.
 models:
   - key: qwen-qwen3-6-35b-a3b
     sort: 10
     category: "Qwen"
     name: "Qwen/Qwen3.6-35B-A3B"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "35B"
     activeParameters: "3B"
@@ -27,6 +30,7 @@ models:
     sort: 20
     category: "Qwen"
     name: "Qwen/Qwen3.6-35B-A3B-FP8"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "35B"
     activeParameters: "3B"
@@ -48,6 +52,7 @@ models:
     sort: 30
     category: "Qwen"
     name: "nvidia/Qwen3.6-35B-A3B-NVFP4"
+    sources: ["huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "35B"
     activeParameters: "3B"
@@ -69,6 +74,7 @@ models:
     sort: 40
     category: "Qwen"
     name: "Qwen/Qwen3.8-27B"
+    sources: ["modelscope", "huggingface"]
     modelType: "Dense"
     moeBackboneParameters: "N/A"
     activeParameters: "N/A"
@@ -90,6 +96,7 @@ models:
     sort: 50
     category: "Qwen"
     name: "Qwen/Qwen3.8-27B-FP8"
+    sources: ["modelscope", "huggingface"]
     modelType: "Dense"
     moeBackboneParameters: "N/A"
     activeParameters: "N/A"
@@ -111,6 +118,7 @@ models:
     sort: 60
     category: "Qwen"
     name: "nvidia/Qwen3.8-27B-NVFP4"
+    sources: ["huggingface"]
     modelType: "Dense"
     moeBackboneParameters: "N/A"
     activeParameters: "N/A"
@@ -132,6 +140,7 @@ models:
     sort: 70
     category: "Qwen"
     name: "Qwen/Qwen3.8-Flash-Next"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "125B"
     activeParameters: "6B"
@@ -153,6 +162,7 @@ models:
     sort: 80
     category: "Qwen"
     name: "Qwen/Qwen3.8-Flash-Next-FP8"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "125B"
     activeParameters: "6B"
@@ -174,6 +184,7 @@ models:
     sort: 90
     category: "Qwen"
     name: "nvidia/Qwen3.8-Flash-Next-NVFP4"
+    sources: ["huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "125B"
     activeParameters: "6B"
@@ -195,6 +206,7 @@ models:
     sort: 100
     category: "DeepSeek"
     name: "deepseek-ai/DeepSeek-V4-Flash-0731"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "284B"
     activeParameters: "13B"
@@ -216,6 +228,7 @@ models:
     sort: 110
     category: "DeepSeek"
     name: "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "305B"
     activeParameters: "undisclosed"
@@ -237,6 +250,7 @@ models:
     sort: 120
     category: "DeepSeek"
     name: "deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    sources: ["modelscope", "huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "552B"
     activeParameters: "8B/16B"
@@ -258,6 +272,7 @@ models:
     sort: 130
     category: "GLM"
     name: "zai-org/GLM-5.3-Flash"
+    sources: ["huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "320B"
     activeParameters: "18B"
@@ -279,6 +294,7 @@ models:
     sort: 140
     category: "GLM"
     name: "nvidia/GLM-5.3-Flash-NVFP4"
+    sources: ["huggingface"]
     modelType: "MoE"
     moeBackboneParameters: "320B"
     activeParameters: "18B"
