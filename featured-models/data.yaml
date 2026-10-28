@@ -275,10 +275,10 @@ models:
       zh-hant: "官方 FP8 量化版"
       zh: "官方 FP8 量化版"
 
-  - key: nvidia-glm-5-3-flash-fp4-local
+  - key: nvidia-glm-5-3-flash-nvfp4
     sort: 140
     category: "GLM"
-    name: "nvidia/GLM-5.3-Flash-FP4-Local"
+    name: "nvidia/GLM-5.3-Flash-NVFP4"
     modelType: "MoE"
     moeBackboneParameters: "320B"
     activeParameters: "18B"
