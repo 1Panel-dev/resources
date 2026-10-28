@@ -1,43 +1,7 @@
 templates:
-  - key: mk-gb10-moe-qwen3-6-35b-a3b-fp8
+  - key: gb10-qwen3-6-35b-a3b-fp8
     sort: 10
-    name: "MK-GB10-MoE-Qwen3.6-35B-A3B-FP8"
-    imageType: nvidia
-    model: "Qwen3.6-35B-A3B-FP8"
-    description:
-      en: "Qwen3.6-35B-A3B-FP8 launch configuration for GB10 (MK)"
-      es-es: "Configuración de inicio de Qwen3.6-35B-A3B-FP8 para GB10 (MK)"
-      ja: "GB10 (MK) 向けの Qwen3.6-35B-A3B-FP8 起動設定"
-      ko: "GB10 (MK)용 Qwen3.6-35B-A3B-FP8 실행 설정"
-      ms: "Konfigurasi pelancaran Qwen3.6-35B-A3B-FP8 untuk GB10 (MK)"
-      pt-br: "Configuração de inicialização do Qwen3.6-35B-A3B-FP8 para GB10 (MK)"
-      ru: "Конфигурация запуска Qwen3.6-35B-A3B-FP8 для GB10 (MK)"
-      tr: "GB10 (MK) için Qwen3.6-35B-A3B-FP8 başlatma yapılandırması"
-      zh-hant: "適用於 GB10 (MK) 的 Qwen3.6-35B-A3B-FP8 啟動設定"
-      zh: "适用于 GB10 (MK) 的 Qwen3.6-35B-A3B-FP8 启动配置"
-    command: >-
-      /models/Qwen3.6-35B-A3B-FP8
-      --served-model-name Qwen3.6-35B-A3B
-      --host 0.0.0.0
-      --port 8000
-      --tensor-parallel-size 1
-      --gpu-memory-utilization 0.7
-      --max-model-len 32768
-      --reasoning-parser qwen3
-      --enable-auto-tool-choice
-      --tool-call-parser qwen3_coder
-      --block-size 32
-      --enable-prefix-caching
-      --enable-chunked-prefill
-      --max-num-batched-tokens 8192
-      --max-num-seqs 64
-      --attention-backend FLASH_ATTN
-      --default-chat-template-kwargs '{"enable_thinking": false}'
-      --speculative-config '{"method":"qwen3_next_mtp","num_speculative_tokens":4}'
-
-  - key: 1panel-gb10-moe-qwen3-6-35b-a3b-fp8
-    sort: 20
-    name: "1Panel-GB10-MoE-Qwen3.6-35B-A3B-FP8"
+    name: "GB10-Qwen3.6-35B-A3B-FP8"
     imageType: nvidia
     model: "Qwen3.6-35B-A3B-FP8"
     description:
@@ -71,43 +35,8 @@ templates:
       --disable-log-stats
       --default-chat-template-kwargs '{"enable_thinking": false}'
 
-  - key: intel-qwen3-6-27b-fp8
-    sort: 30
-    name: "Intel-Qwen3.6-27B-FP8"
-    imageType: intel
-    model: "Qwen3.6-27B"
-    description:
-      en: "Qwen3.6-27B (FP8) launch configuration for Intel"
-      es-es: "Configuración de inicio de Qwen3.6-27B (FP8) para Intel"
-      ja: "Intel 向けの Qwen3.6-27B (FP8) 起動設定"
-      ko: "Intel용 Qwen3.6-27B (FP8) 실행 설정"
-      ms: "Konfigurasi pelancaran Qwen3.6-27B (FP8) untuk Intel"
-      pt-br: "Configuração de inicialização do Qwen3.6-27B (FP8) para Intel"
-      ru: "Конфигурация запуска Qwen3.6-27B (FP8) для Intel"
-      tr: "Intel için Qwen3.6-27B (FP8) başlatma yapılandırması"
-      zh-hant: "適用於 Intel 的 Qwen3.6-27B (FP8) 啟動設定"
-      zh: "适用于 Intel 的 Qwen3.6-27B (FP8) 启动配置"
-    command: >-
-      --model /models/Qwen3.6-27B
-      --served-model-name Qwen3.6-27B
-      --port 8001
-      --quantization fp8
-      --gpu-memory-util 0.9
-      --max-num-batched-tokens 8192
-      --max-model-len 67584
-      --block-size 64
-      --dtype float16
-      --enforce-eager
-      --trust-remote-code
-      --disable-log-requests
-      --enable-prefix-caching
-      --enable-prompt-tokens-details
-      --enable-auto-tool-choice
-      --tool-call-parser qwen3_coder
-      --tensor-parallel-size 4
-
   - key: b70-qwen3-6-27b-fp8
-    sort: 40
+    sort: 20
     name: "B70-Qwen3.6-27B-FP8"
     imageType: intel
     model: "Qwen3.6-27B"
@@ -142,7 +71,7 @@ templates:
       --tensor-parallel-size 4
 
   - key: rtx-pro5000-qwen3-6-27b-fp8
-    sort: 50
+    sort: 30
     name: "RTX-Pro5000-Qwen3.6-27B-FP8"
     imageType: nvidia
     model: "Qwen3.6-27B-FP8"
@@ -179,7 +108,7 @@ templates:
       --speculative-config '{"method":"mtp","num_speculative_tokens":3}'
 
   - key: ascend-310p-qwen3-6-27b-w8a8
-    sort: 60
+    sort: 40
     name: "Ascend-310P-Qwen3.6-27B-W8A8"
     imageType: ascend
     model: "Qwen3.6-27B-w8a8"
@@ -217,7 +146,7 @@ templates:
       --disable-log-stats
 
   - key: deepseek-v4-flash-0731
-    sort: 70
+    sort: 50
     name: "DeepSeek-V4-Flash-0731"
     imageType: nvidia
     model: "DeepSeek-V4-Flash-0731"
@@ -255,7 +184,7 @@ templates:
       --compilation-config '{"cudagraph_mode":"FULL_AND_PIECEWISE","custom_ops":["all"]}'
 
   - key: ascend-qwen3-6-35b-a3b
-    sort: 80
+    sort: 60
     name: "Ascend-Qwen3.6-35B-A3B"
     imageType: ascend
     model: "Qwen3.6-35B-A3B"
@@ -293,7 +222,7 @@ templates:
       --additional-config '{"enable_cpu_binding":true,"multistream_overlap_shared_expert":true}'
 
   - key: rtx-pro5000-4x-qwen3-8-flash-next-nvfp4
-    sort: 90
+    sort: 70
     name: "RTX-Pro5000-4x-Qwen3.8-Flash-Next-NVFP4"
     imageType: nvidia
     model: "Qwen3.8-Flash-Next-NVFP4"
@@ -331,7 +260,7 @@ templates:
       --default-chat-template-kwargs '{"enable_thinking":false}'
 
   - key: rtx-pro5000-2x-qwen3-8-flash-next-nvfp4
-    sort: 100
+    sort: 80
     name: "RTX-Pro5000-2x-Qwen3.8-Flash-Next-NVFP4"
     imageType: nvidia
     model: "Qwen3.8-Flash-Next-NVFP4"
