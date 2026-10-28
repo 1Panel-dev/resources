@@ -8,7 +8,7 @@ run-name: 发布 脚本 到 ${{ inputs.oss_directory }}
         description: OSS destination directory (must end with /)
         required: true
         type: string
-        default: oss://resource-fit2cloud-com/1panel/resource/v2/script_tmp/
+        default: oss://resource-fit2cloud-com/1panel/resource/v2/scripts/
 
 permissions:
   contents: read
