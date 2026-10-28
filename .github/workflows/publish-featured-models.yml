@@ -1,0 +1,46 @@
+name: Publish featured models to OSS
+run-name: 发布 精选模型 到 ${{ inputs.oss_directory }}
+
+"on":
+  workflow_dispatch:
+    inputs:
+      runs-on:
+        description: '运行器，self-hosted 是自建的，ubuntu-latest 是 GitHub 托管的'
+        required: true
+        default: self-hosted
+        type: choice
+        options:
+          - self-hosted
+          - ubuntu-latest
+      oss_directory:
+        description: OSS destination directory (must end with /)
+        required: true
+        type: string
+        default: oss://resource-fit2cloud-com/1panel/resource/v2/featured-models/
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-featured-models-oss
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ${{ inputs.runs-on || 'self-hosted' }}
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Publish featured models
+        uses: ./.github/actions/publish-resource
+        with:
+          resource: featured-models
+          oss-directory: ${{ inputs.oss_directory }}
+        env:
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}

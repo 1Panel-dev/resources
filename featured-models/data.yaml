@@ -1,0 +1,297 @@
+# Parameter counts are strings in billions (B).
+# N/A means not applicable; undisclosed means not publicly disclosed.
+# approximateWeightSizeGB describes weight storage size, not runtime GPU memory.
+models:
+  - key: qwen-qwen3-6-35b-a3b
+    sort: 10
+    category: "Qwen"
+    name: "Qwen/Qwen3.6-35B-A3B"
+    modelType: "MoE"
+    moeBackboneParameters: "35B"
+    activeParameters: "3B"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 67
+    description:
+      en: "Official BF16 precision"
+      es-es: "Precisión BF16 oficial"
+      ja: "公式 BF16 精度"
+      ko: "공식 BF16 정밀도"
+      ms: "Ketepatan BF16 rasmi"
+      pt-br: "Precisão BF16 oficial"
+      ru: "Официальная версия с точностью BF16"
+      tr: "Resmî BF16 hassasiyeti"
+      zh-hant: "官方 BF16 精度"
+      zh: "官方 BF16 精度"
+
+  - key: qwen-qwen3-6-35b-a3b-fp8
+    sort: 20
+    category: "Qwen"
+    name: "Qwen/Qwen3.6-35B-A3B-FP8"
+    modelType: "MoE"
+    moeBackboneParameters: "35B"
+    activeParameters: "3B"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 35
+    description:
+      en: "Official FP8 quantized version"
+      es-es: "Versión oficial cuantizada en FP8"
+      ja: "公式 FP8 量子化版"
+      ko: "공식 FP8 양자화 버전"
+      ms: "Versi pengkuantuman FP8 rasmi"
+      pt-br: "Versão oficial quantizada em FP8"
+      ru: "Официальная квантованная версия FP8"
+      tr: "Resmî FP8 kuantize sürümü"
+      zh-hant: "官方 FP8 量化版"
+      zh: "官方 FP8 量化版"
+
+  - key: nvidia-qwen3-6-35b-a3b-nvfp4
+    sort: 30
+    category: "Qwen"
+    name: "nvidia/Qwen3.6-35B-A3B-NVFP4"
+    modelType: "MoE"
+    moeBackboneParameters: "35B"
+    activeParameters: "3B"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 22
+    description:
+      en: "Blackwell-only NVFP4 mixed-precision quantization"
+      es-es: "Cuantización NVFP4 de precisión mixta exclusiva para Blackwell"
+      ja: "Blackwell 専用の NVFP4 混合精度量子化"
+      ko: "Blackwell 전용 NVFP4 혼합 정밀도 양자화"
+      ms: "Pengkuantuman ketepatan campuran NVFP4 khusus untuk Blackwell"
+      pt-br: "Quantização NVFP4 de precisão mista exclusiva para Blackwell"
+      ru: "Квантование NVFP4 со смешанной точностью исключительно для Blackwell"
+      tr: "Blackwell’e özel NVFP4 karma hassasiyetli kuantizasyon"
+      zh-hant: "Blackwell 專用 NVFP4 混合精度量化"
+      zh: "Blackwell 专用 NVFP4 混合精度量化"
+
+  - key: qwen-qwen3-8-27b
+    sort: 40
+    category: "Qwen"
+    name: "Qwen/Qwen3.8-27B"
+    modelType: "Dense"
+    moeBackboneParameters: "N/A"
+    activeParameters: "N/A"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 55
+    description:
+      en: "Official BF16 precision"
+      es-es: "Precisión BF16 oficial"
+      ja: "公式 BF16 精度"
+      ko: "공식 BF16 정밀도"
+      ms: "Ketepatan BF16 rasmi"
+      pt-br: "Precisão BF16 oficial"
+      ru: "Официальная версия с точностью BF16"
+      tr: "Resmî BF16 hassasiyeti"
+      zh-hant: "官方 BF16 精度"
+      zh: "官方 BF16 精度"
+
+  - key: qwen-qwen3-8-27b-fp8
+    sort: 50
+    category: "Qwen"
+    name: "Qwen/Qwen3.8-27B-FP8"
+    modelType: "Dense"
+    moeBackboneParameters: "N/A"
+    activeParameters: "N/A"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 28
+    description:
+      en: "Official FP8 quantized version"
+      es-es: "Versión oficial cuantizada en FP8"
+      ja: "公式 FP8 量子化版"
+      ko: "공식 FP8 양자화 버전"
+      ms: "Versi pengkuantuman FP8 rasmi"
+      pt-br: "Versão oficial quantizada em FP8"
+      ru: "Официальная квантованная версия FP8"
+      tr: "Resmî FP8 kuantize sürümü"
+      zh-hant: "官方 FP8 量化版"
+      zh: "官方 FP8 量化版"
+
+  - key: nvidia-qwen3-8-27b-nvfp4
+    sort: 60
+    category: "Qwen"
+    name: "nvidia/Qwen3.8-27B-NVFP4"
+    modelType: "Dense"
+    moeBackboneParameters: "N/A"
+    activeParameters: "N/A"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 22
+    description:
+      en: "Blackwell-only NVFP4 mixed-precision quantization"
+      es-es: "Cuantización NVFP4 de precisión mixta exclusiva para Blackwell"
+      ja: "Blackwell 専用の NVFP4 混合精度量子化"
+      ko: "Blackwell 전용 NVFP4 혼합 정밀도 양자화"
+      ms: "Pengkuantuman ketepatan campuran NVFP4 khusus untuk Blackwell"
+      pt-br: "Quantização NVFP4 de precisão mista exclusiva para Blackwell"
+      ru: "Квантование NVFP4 со смешанной точностью исключительно для Blackwell"
+      tr: "Blackwell’e özel NVFP4 karma hassasiyetli kuantizasyon"
+      zh-hant: "Blackwell 專用 NVFP4 混合精度量化"
+      zh: "Blackwell 专用 NVFP4 混合精度量化"
+
+  - key: qwen-qwen3-8-flash-next
+    sort: 70
+    category: "Qwen"
+    name: "Qwen/Qwen3.8-Flash-Next"
+    modelType: "MoE"
+    moeBackboneParameters: "125B"
+    activeParameters: "6B"
+    engramParameters: "51B"
+    approximateWeightSizeGB: 335
+    description:
+      en: "Official BF16 precision"
+      es-es: "Precisión BF16 oficial"
+      ja: "公式 BF16 精度"
+      ko: "공식 BF16 정밀도"
+      ms: "Ketepatan BF16 rasmi"
+      pt-br: "Precisão BF16 oficial"
+      ru: "Официальная версия с точностью BF16"
+      tr: "Resmî BF16 hassasiyeti"
+      zh-hant: "官方 BF16 精度"
+      zh: "官方 BF16 精度"
+
+  - key: qwen-qwen3-8-flash-next-fp8
+    sort: 80
+    category: "Qwen"
+    name: "Qwen/Qwen3.8-Flash-Next-FP8"
+    modelType: "MoE"
+    moeBackboneParameters: "125B"
+    activeParameters: "6B"
+    engramParameters: "51B"
+    approximateWeightSizeGB: 172
+    description:
+      en: "Official FP8 quantized version"
+      es-es: "Versión oficial cuantizada en FP8"
+      ja: "公式 FP8 量子化版"
+      ko: "공식 FP8 양자화 버전"
+      ms: "Versi pengkuantuman FP8 rasmi"
+      pt-br: "Versão oficial quantizada em FP8"
+      ru: "Официальная квантованная версия FP8"
+      tr: "Resmî FP8 kuantize sürümü"
+      zh-hant: "官方 FP8 量化版"
+      zh: "官方 FP8 量化版"
+
+  - key: nvidia-qwen3-8-flash-next-nvfp4
+    sort: 90
+    category: "Qwen"
+    name: "nvidia/Qwen3.8-Flash-Next-NVFP4"
+    modelType: "MoE"
+    moeBackboneParameters: "125B"
+    activeParameters: "6B"
+    engramParameters: "51B"
+    approximateWeightSizeGB: 130
+    description:
+      en: "Blackwell-only NVFP4 mixed-precision quantization"
+      es-es: "Cuantización NVFP4 de precisión mixta exclusiva para Blackwell"
+      ja: "Blackwell 専用の NVFP4 混合精度量子化"
+      ko: "Blackwell 전용 NVFP4 혼합 정밀도 양자화"
+      ms: "Pengkuantuman ketepatan campuran NVFP4 khusus untuk Blackwell"
+      pt-br: "Quantização NVFP4 de precisão mista exclusiva para Blackwell"
+      ru: "Квантование NVFP4 со смешанной точностью исключительно для Blackwell"
+      tr: "Blackwell’e özel NVFP4 karma hassasiyetli kuantizasyon"
+      zh-hant: "Blackwell 專用 NVFP4 混合精度量化"
+      zh: "Blackwell 专用 NVFP4 混合精度量化"
+
+  - key: deepseek-ai-deepseek-v4-flash-0731
+    sort: 100
+    category: "DeepSeek"
+    name: "deepseek-ai/DeepSeek-V4-Flash-0731"
+    modelType: "MoE"
+    moeBackboneParameters: "284B"
+    activeParameters: "13B"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 167
+    description:
+      en: "Official FP4+FP8 mixed precision"
+      es-es: "Precisión mixta FP4+FP8 oficial"
+      ja: "公式 FP4+FP8 混合精度"
+      ko: "공식 FP4+FP8 혼합 정밀도"
+      ms: "Ketepatan campuran FP4+FP8 rasmi"
+      pt-br: "Precisão mista FP4+FP8 oficial"
+      ru: "Официальная версия со смешанной точностью FP4+FP8"
+      tr: "Resmî FP4+FP8 karma hassasiyeti"
+      zh-hant: "官方 FP4+FP8 混合精度"
+      zh: "官方 FP4+FP8 混合精度"
+
+  - key: deepseek-ai-deepseek-v4-flash-vision-exp
+    sort: 110
+    category: "DeepSeek"
+    name: "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+    modelType: "MoE"
+    moeBackboneParameters: "305B"
+    activeParameters: "undisclosed"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 167
+    description:
+      en: "Official FP4+FP8 mixed precision"
+      es-es: "Precisión mixta FP4+FP8 oficial"
+      ja: "公式 FP4+FP8 混合精度"
+      ko: "공식 FP4+FP8 혼합 정밀도"
+      ms: "Ketepatan campuran FP4+FP8 rasmi"
+      pt-br: "Precisão mista FP4+FP8 oficial"
+      ru: "Официальная версия со смешанной точностью FP4+FP8"
+      tr: "Resmî FP4+FP8 karma hassasiyeti"
+      zh-hant: "官方 FP4+FP8 混合精度"
+      zh: "官方 FP4+FP8 混合精度"
+
+  - key: deepseek-ai-deepseek-v4-1-flash-1017
+    sort: 120
+    category: "DeepSeek"
+    name: "deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    modelType: "MoE"
+    moeBackboneParameters: "552B"
+    activeParameters: "8B/16B"
+    engramParameters: "196B"
+    approximateWeightSizeGB: 510
+    description:
+      en: "Official FP4+FP8 mixed precision"
+      es-es: "Precisión mixta FP4+FP8 oficial"
+      ja: "公式 FP4+FP8 混合精度"
+      ko: "공식 FP4+FP8 혼합 정밀도"
+      ms: "Ketepatan campuran FP4+FP8 rasmi"
+      pt-br: "Precisão mista FP4+FP8 oficial"
+      ru: "Официальная версия со смешанной точностью FP4+FP8"
+      tr: "Resmî FP4+FP8 karma hassasiyeti"
+      zh-hant: "官方 FP4+FP8 混合精度"
+      zh: "官方 FP4+FP8 混合精度"
+
+  - key: zai-org-glm-5-3-flash
+    sort: 130
+    category: "GLM"
+    name: "zai-org/GLM-5.3-Flash"
+    modelType: "MoE"
+    moeBackboneParameters: "320B"
+    activeParameters: "18B"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 306
+    description:
+      en: "Official FP8 quantized version"
+      es-es: "Versión oficial cuantizada en FP8"
+      ja: "公式 FP8 量子化版"
+      ko: "공식 FP8 양자화 버전"
+      ms: "Versi pengkuantuman FP8 rasmi"
+      pt-br: "Versão oficial quantizada em FP8"
+      ru: "Официальная квантованная версия FP8"
+      tr: "Resmî FP8 kuantize sürümü"
+      zh-hant: "官方 FP8 量化版"
+      zh: "官方 FP8 量化版"
+
+  - key: nvidia-glm-5-3-flash-fp4-local
+    sort: 140
+    category: "GLM"
+    name: "nvidia/GLM-5.3-Flash-FP4-Local"
+    modelType: "MoE"
+    moeBackboneParameters: "320B"
+    activeParameters: "18B"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 185
+    description:
+      en: "Blackwell-only NVFP4 mixed-precision quantization"
+      es-es: "Cuantización NVFP4 de precisión mixta exclusiva para Blackwell"
+      ja: "Blackwell 専用の NVFP4 混合精度量子化"
+      ko: "Blackwell 전용 NVFP4 혼합 정밀도 양자화"
+      ms: "Pengkuantuman ketepatan campuran NVFP4 khusus untuk Blackwell"
+      pt-br: "Quantização NVFP4 de precisão mista exclusiva para Blackwell"
+      ru: "Квантование NVFP4 со смешанной точностью исключительно для Blackwell"
+      tr: "Blackwell’e özel NVFP4 karma hassasiyetli kuantizasyon"
+      zh-hant: "Blackwell 專用 NVFP4 混合精度量化"
+      zh: "Blackwell 专用 NVFP4 混合精度量化"

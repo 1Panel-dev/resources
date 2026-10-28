@@ -1,0 +1,371 @@
+templates:
+  - key: mk-gb10-moe-qwen3-6-35b-a3b-fp8
+    sort: 10
+    name: "MK-GB10-MoE-Qwen3.6-35B-A3B-FP8"
+    imageType: nvidia
+    model: "Qwen3.6-35B-A3B-FP8"
+    description:
+      en: "Qwen3.6-35B-A3B-FP8 launch configuration for GB10 (MK)"
+      es-es: "Configuración de inicio de Qwen3.6-35B-A3B-FP8 para GB10 (MK)"
+      ja: "GB10 (MK) 向けの Qwen3.6-35B-A3B-FP8 起動設定"
+      ko: "GB10 (MK)용 Qwen3.6-35B-A3B-FP8 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-35B-A3B-FP8 untuk GB10 (MK)"
+      pt-br: "Configuração de inicialização do Qwen3.6-35B-A3B-FP8 para GB10 (MK)"
+      ru: "Конфигурация запуска Qwen3.6-35B-A3B-FP8 для GB10 (MK)"
+      tr: "GB10 (MK) için Qwen3.6-35B-A3B-FP8 başlatma yapılandırması"
+      zh-hant: "適用於 GB10 (MK) 的 Qwen3.6-35B-A3B-FP8 啟動設定"
+      zh: "适用于 GB10 (MK) 的 Qwen3.6-35B-A3B-FP8 启动配置"
+    command: >-
+      /models/Qwen3.6-35B-A3B-FP8
+      --served-model-name Qwen3.6-35B-A3B
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 1
+      --gpu-memory-utilization 0.7
+      --max-model-len 32768
+      --reasoning-parser qwen3
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_coder
+      --block-size 32
+      --enable-prefix-caching
+      --enable-chunked-prefill
+      --max-num-batched-tokens 8192
+      --max-num-seqs 64
+      --attention-backend FLASH_ATTN
+      --default-chat-template-kwargs '{"enable_thinking": false}'
+      --speculative-config '{"method":"qwen3_next_mtp","num_speculative_tokens":4}'
+
+  - key: 1panel-gb10-moe-qwen3-6-35b-a3b-fp8
+    sort: 20
+    name: "1Panel-GB10-MoE-Qwen3.6-35B-A3B-FP8"
+    imageType: nvidia
+    model: "Qwen3.6-35B-A3B-FP8"
+    description:
+      en: "Qwen3.6-35B-A3B-FP8 launch configuration for GB10 (1Panel)"
+      es-es: "Configuración de inicio de Qwen3.6-35B-A3B-FP8 para GB10 (1Panel)"
+      ja: "GB10 (1Panel) 向けの Qwen3.6-35B-A3B-FP8 起動設定"
+      ko: "GB10 (1Panel)용 Qwen3.6-35B-A3B-FP8 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-35B-A3B-FP8 untuk GB10 (1Panel)"
+      pt-br: "Configuração de inicialização do Qwen3.6-35B-A3B-FP8 para GB10 (1Panel)"
+      ru: "Конфигурация запуска Qwen3.6-35B-A3B-FP8 для GB10 (1Panel)"
+      tr: "GB10 (1Panel) için Qwen3.6-35B-A3B-FP8 başlatma yapılandırması"
+      zh-hant: "適用於 GB10 (1Panel) 的 Qwen3.6-35B-A3B-FP8 啟動設定"
+      zh: "适用于 GB10 (1Panel) 的 Qwen3.6-35B-A3B-FP8 启动配置"
+    command: >-
+      /models/Qwen3.6-35B-A3B-FP8
+      --served-model-name Qwen3.6-35B-A3B
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 1
+      --gpu-memory-utilization 0.8
+      --max-model-len 131072
+      --reasoning-parser qwen3
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_coder
+      --block-size 128
+      --enable-prefix-caching
+      --max-num-batched-tokens 65536
+      --max-num-seqs 64
+      --swap-space 16
+      --attention-backend FLASH_ATTN
+      --disable-log-stats
+      --default-chat-template-kwargs '{"enable_thinking": false}'
+
+  - key: intel-qwen3-6-27b-fp8
+    sort: 30
+    name: "Intel-Qwen3.6-27B-FP8"
+    imageType: intel
+    model: "Qwen3.6-27B"
+    description:
+      en: "Qwen3.6-27B (FP8) launch configuration for Intel"
+      es-es: "Configuración de inicio de Qwen3.6-27B (FP8) para Intel"
+      ja: "Intel 向けの Qwen3.6-27B (FP8) 起動設定"
+      ko: "Intel용 Qwen3.6-27B (FP8) 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-27B (FP8) untuk Intel"
+      pt-br: "Configuração de inicialização do Qwen3.6-27B (FP8) para Intel"
+      ru: "Конфигурация запуска Qwen3.6-27B (FP8) для Intel"
+      tr: "Intel için Qwen3.6-27B (FP8) başlatma yapılandırması"
+      zh-hant: "適用於 Intel 的 Qwen3.6-27B (FP8) 啟動設定"
+      zh: "适用于 Intel 的 Qwen3.6-27B (FP8) 启动配置"
+    command: >-
+      --model /models/Qwen3.6-27B
+      --served-model-name Qwen3.6-27B
+      --port 8001
+      --quantization fp8
+      --gpu-memory-util 0.9
+      --max-num-batched-tokens 8192
+      --max-model-len 67584
+      --block-size 64
+      --dtype float16
+      --enforce-eager
+      --trust-remote-code
+      --disable-log-requests
+      --enable-prefix-caching
+      --enable-prompt-tokens-details
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_coder
+      --tensor-parallel-size 4
+
+  - key: b70-qwen3-6-27b-fp8
+    sort: 40
+    name: "B70-Qwen3.6-27B-FP8"
+    imageType: intel
+    model: "Qwen3.6-27B"
+    description:
+      en: "Qwen3.6-27B (FP8) launch configuration for B70"
+      es-es: "Configuración de inicio de Qwen3.6-27B (FP8) para B70"
+      ja: "B70 向けの Qwen3.6-27B (FP8) 起動設定"
+      ko: "B70용 Qwen3.6-27B (FP8) 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-27B (FP8) untuk B70"
+      pt-br: "Configuração de inicialização do Qwen3.6-27B (FP8) para B70"
+      ru: "Конфигурация запуска Qwen3.6-27B (FP8) для B70"
+      tr: "B70 için Qwen3.6-27B (FP8) başlatma yapılandırması"
+      zh-hant: "適用於 B70 的 Qwen3.6-27B (FP8) 啟動設定"
+      zh: "适用于 B70 的 Qwen3.6-27B (FP8) 启动配置"
+    command: >-
+      --model /models/Qwen3.6-27B
+      --served-model-name Qwen3.6-27B
+      --port 8001
+      --quantization fp8
+      --gpu-memory-util 0.9
+      --max-num-batched-tokens 8192
+      --max-model-len 262144
+      --block-size 64
+      --dtype float16
+      --enforce-eager
+      --trust-remote-code
+      --disable-log-requests
+      --enable-prefix-caching
+      --enable-prompt-tokens-details
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_coder
+      --tensor-parallel-size 4
+
+  - key: rtx-pro5000-qwen3-6-27b-fp8
+    sort: 50
+    name: "RTX-Pro5000-Qwen3.6-27B-FP8"
+    imageType: nvidia
+    model: "Qwen3.6-27B-FP8"
+    description:
+      en: "Qwen3.6-27B-FP8 launch configuration for RTX Pro 5000"
+      es-es: "Configuración de inicio de Qwen3.6-27B-FP8 para RTX Pro 5000"
+      ja: "RTX Pro 5000 向けの Qwen3.6-27B-FP8 起動設定"
+      ko: "RTX Pro 5000용 Qwen3.6-27B-FP8 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-27B-FP8 untuk RTX Pro 5000"
+      pt-br: "Configuração de inicialização do Qwen3.6-27B-FP8 para RTX Pro 5000"
+      ru: "Конфигурация запуска Qwen3.6-27B-FP8 для RTX Pro 5000"
+      tr: "RTX Pro 5000 için Qwen3.6-27B-FP8 başlatma yapılandırması"
+      zh-hant: "適用於 RTX Pro 5000 的 Qwen3.6-27B-FP8 啟動設定"
+      zh: "适用于 RTX Pro 5000 的 Qwen3.6-27B-FP8 启动配置"
+    command: >-
+      /models/Qwen3.6-27B-FP8
+      --served-model-name Qwen3.6-27B-FP8
+      --host 0.0.0.0
+      --port 8000
+      --gpu-memory-utilization 0.92
+      --tensor-parallel-size 1
+      --max-model-len 262144
+      --max-num-batched-tokens 16384
+      --max-num-seqs 12
+      --kv-cache-dtype fp8
+      --enable-chunked-prefill
+      --enable-prefix-caching
+      --enforce-eager
+      --trust-remote-code
+      --language-model-only
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_coder
+      --reasoning-parser qwen3
+      --speculative-config '{"method":"mtp","num_speculative_tokens":3}'
+
+  - key: ascend-310p-qwen3-6-27b-w8a8
+    sort: 60
+    name: "Ascend-310P-Qwen3.6-27B-W8A8"
+    imageType: ascend
+    model: "Qwen3.6-27B-w8a8"
+    description:
+      en: "Qwen3.6-27B-W8A8 launch configuration for Ascend 310P"
+      es-es: "Configuración de inicio de Qwen3.6-27B-W8A8 para Ascend 310P"
+      ja: "Ascend 310P 向けの Qwen3.6-27B-W8A8 起動設定"
+      ko: "Ascend 310P용 Qwen3.6-27B-W8A8 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-27B-W8A8 untuk Ascend 310P"
+      pt-br: "Configuração de inicialização do Qwen3.6-27B-W8A8 para Ascend 310P"
+      ru: "Конфигурация запуска Qwen3.6-27B-W8A8 для Ascend 310P"
+      tr: "Ascend 310P için Qwen3.6-27B-W8A8 başlatma yapılandırması"
+      zh-hant: "適用於 Ascend 310P 的 Qwen3.6-27B-W8A8 啟動設定"
+      zh: "适用于 Ascend 310P 的 Qwen3.6-27B-W8A8 启动配置"
+    command: >-
+      /models/Qwen3.6-27B-w8a8
+      --served-model-name qwen3-6-27b
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 4
+      --max_num_seqs 16
+      --max-model-len 16384
+      --gpu_memory_utilization 0.90
+      --dtype float16
+      --trust-remote-code
+      --enable-prefix-caching
+      --enable-prompt-tokens-details
+      --additional-config '{"ascend_compilation_config": {"fuse_norm_quant": false}}'
+      --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY", "cudagraph_capture_sizes": [1,4]}'
+      --allowed-local-media-path /
+      --reasoning-parser qwen3
+      --mamba-ssm-cache-dtype float16
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_coder
+      --disable-log-stats
+
+  - key: deepseek-v4-flash-0731
+    sort: 70
+    name: "DeepSeek-V4-Flash-0731"
+    imageType: nvidia
+    model: "DeepSeek-V4-Flash-0731"
+    description:
+      en: "DeepSeek-V4-Flash-0731 launch configuration for NVIDIA"
+      es-es: "Configuración de inicio de DeepSeek-V4-Flash-0731 para NVIDIA"
+      ja: "NVIDIA 向けの DeepSeek-V4-Flash-0731 起動設定"
+      ko: "NVIDIA용 DeepSeek-V4-Flash-0731 실행 설정"
+      ms: "Konfigurasi pelancaran DeepSeek-V4-Flash-0731 untuk NVIDIA"
+      pt-br: "Configuração de inicialização do DeepSeek-V4-Flash-0731 para NVIDIA"
+      ru: "Конфигурация запуска DeepSeek-V4-Flash-0731 для NVIDIA"
+      tr: "NVIDIA için DeepSeek-V4-Flash-0731 başlatma yapılandırması"
+      zh-hant: "適用於 NVIDIA 的 DeepSeek-V4-Flash-0731 啟動設定"
+      zh: "适用于 NVIDIA 的 DeepSeek-V4-Flash-0731 启动配置"
+    command: >-
+      /models/DeepSeek-V4-Flash-0731
+      --served-model-name DeepSeek-V4-Flash
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 4
+      --enable-expert-parallel
+      --gpu-memory-utilization 0.95
+      --max-model-len 262144
+      --kv-cache-dtype fp8
+      --block-size 256
+      --max-num-batched-tokens 8192
+      --enable-prefix-caching
+      --tokenizer-mode deepseek_v4
+      --tool-call-parser deepseek_v4
+      --reasoning-parser deepseek_v4
+      --enable-auto-tool-choice
+      --async-scheduling
+      --moe-backend auto
+      --no-enable-flashinfer-autotune
+      --compilation-config '{"cudagraph_mode":"FULL_AND_PIECEWISE","custom_ops":["all"]}'
+
+  - key: ascend-qwen3-6-35b-a3b
+    sort: 80
+    name: "Ascend-Qwen3.6-35B-A3B"
+    imageType: ascend
+    model: "Qwen3.6-35B-A3B"
+    description:
+      en: "Qwen3.6-35B-A3B launch configuration for Ascend"
+      es-es: "Configuración de inicio de Qwen3.6-35B-A3B para Ascend"
+      ja: "Ascend 向けの Qwen3.6-35B-A3B 起動設定"
+      ko: "Ascend용 Qwen3.6-35B-A3B 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-35B-A3B untuk Ascend"
+      pt-br: "Configuração de inicialização do Qwen3.6-35B-A3B para Ascend"
+      ru: "Конфигурация запуска Qwen3.6-35B-A3B для Ascend"
+      tr: "Ascend için Qwen3.6-35B-A3B başlatma yapılandırması"
+      zh-hant: "適用於 Ascend 的 Qwen3.6-35B-A3B 啟動設定"
+      zh: "适用于 Ascend 的 Qwen3.6-35B-A3B 启动配置"
+    command: >-
+      /models/Qwen3.6-35B-A3B
+      --served-model-name Qwen3.6-35B-A3B
+      --host 0.0.0.0
+      --port 8000
+      --data-parallel-size 1
+      --tensor-parallel-size 2
+      --max-num-seqs 32
+      --max-model-len 262144
+      --max-num-batched-tokens 8192
+      --async-scheduling
+      --trust-remote-code
+      --gpu-memory-utilization 0.75
+      --enable-prefix-caching
+      --enable-auto-tool-choice
+      --enable-expert-parallel
+      --tool-call-parser qwen3_coder
+      --reasoning-parser qwen3
+      --speculative-config '{"method":"qwen3_5_mtp","num_speculative_tokens":3,"enforce_eager":true}'
+      --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'
+      --additional-config '{"enable_cpu_binding":true,"multistream_overlap_shared_expert":true}'
+
+  - key: rtx-pro5000-4x-qwen3-8-flash-next-nvfp4
+    sort: 90
+    name: "RTX-Pro5000-4x-Qwen3.8-Flash-Next-NVFP4"
+    imageType: nvidia
+    model: "Qwen3.8-Flash-Next-NVFP4"
+    description:
+      en: "Qwen3.8-Flash-Next-NVFP4 launch configuration for 4 × RTX Pro 5000"
+      es-es: "Configuración de inicio de Qwen3.8-Flash-Next-NVFP4 para 4 × RTX Pro 5000"
+      ja: "4 × RTX Pro 5000 向けの Qwen3.8-Flash-Next-NVFP4 起動設定"
+      ko: "4 × RTX Pro 5000용 Qwen3.8-Flash-Next-NVFP4 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.8-Flash-Next-NVFP4 untuk 4 × RTX Pro 5000"
+      pt-br: "Configuração de inicialização do Qwen3.8-Flash-Next-NVFP4 para 4 × RTX Pro 5000"
+      ru: "Конфигурация запуска Qwen3.8-Flash-Next-NVFP4 для 4 × RTX Pro 5000"
+      tr: "4 × RTX Pro 5000 için Qwen3.8-Flash-Next-NVFP4 başlatma yapılandırması"
+      zh-hant: "適用於 4 × RTX Pro 5000 的 Qwen3.8-Flash-Next-NVFP4 啟動設定"
+      zh: "适用于 4 × RTX Pro 5000 的 Qwen3.8-Flash-Next-NVFP4 启动配置"
+    command: >-
+      /models/Qwen3.8-Flash-Next-NVFP4
+      --served-model-name Qwen3.8-Flash-Next
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 4
+      --gpu-memory-utilization 0.9
+      --max-model-len 262144
+      --enable-expert-parallel
+      --max-num-seqs 256
+      --max-num-batched-tokens 8192
+      --enable-prefix-caching
+      --enable-prompt-tokens-details
+      --no-enable-flashinfer-autotune
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_xml
+      --reasoning-parser qwen3
+      --linear-backend cutlass
+      --trust-remote-code
+      --speculative-config '{"method":"mtp","num_speculative_tokens":3}'
+      --default-chat-template-kwargs '{"enable_thinking":false}'
+
+  - key: rtx-pro5000-2x-qwen3-8-flash-next-nvfp4
+    sort: 100
+    name: "RTX-Pro5000-2x-Qwen3.8-Flash-Next-NVFP4"
+    imageType: nvidia
+    model: "Qwen3.8-Flash-Next-NVFP4"
+    description:
+      en: "Qwen3.8-Flash-Next-NVFP4 launch configuration for 2 × RTX Pro 5000"
+      es-es: "Configuración de inicio de Qwen3.8-Flash-Next-NVFP4 para 2 × RTX Pro 5000"
+      ja: "2 × RTX Pro 5000 向けの Qwen3.8-Flash-Next-NVFP4 起動設定"
+      ko: "2 × RTX Pro 5000용 Qwen3.8-Flash-Next-NVFP4 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.8-Flash-Next-NVFP4 untuk 2 × RTX Pro 5000"
+      pt-br: "Configuração de inicialização do Qwen3.8-Flash-Next-NVFP4 para 2 × RTX Pro 5000"
+      ru: "Конфигурация запуска Qwen3.8-Flash-Next-NVFP4 для 2 × RTX Pro 5000"
+      tr: "2 × RTX Pro 5000 için Qwen3.8-Flash-Next-NVFP4 başlatma yapılandırması"
+      zh-hant: "適用於 2 × RTX Pro 5000 的 Qwen3.8-Flash-Next-NVFP4 啟動設定"
+      zh: "适用于 2 × RTX Pro 5000 的 Qwen3.8-Flash-Next-NVFP4 启动配置"
+    command: >-
+      /models/Qwen3.8-Flash-Next-NVFP4
+      --served-model-name Qwen3.8-Flash-Next
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 2
+      --gpu-memory-utilization 0.9
+      --max-model-len 262144
+      --enable-expert-parallel
+      --max-num-seqs 48
+      --max-num-batched-tokens 8192
+      --enable-prefix-caching
+      --enable-prompt-tokens-details
+      --no-enable-flashinfer-autotune
+      --enable-auto-tool-choice
+      --tool-call-parser qwen3_xml
+      --reasoning-parser qwen3
+      --linear-backend cutlass
+      --trust-remote-code
+      --disable-custom-all-reduce
+      --speculative-config '{"method":"mtp","num_speculative_tokens":3}'
+      --default-chat-template-kwargs '{"enable_thinking":false}'
+      --compilation-config '{"cudagraph_mode":"PIECEWISE"}'
