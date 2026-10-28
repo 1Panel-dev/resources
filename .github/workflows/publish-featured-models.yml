@@ -4,14 +4,6 @@ run-name: 发布 精选模型 到 ${{ inputs.oss_directory }}
 "on":
   workflow_dispatch:
     inputs:
-      runs-on:
-        description: '运行器，self-hosted 是自建的，ubuntu-latest 是 GitHub 托管的'
-        required: true
-        default: self-hosted
-        type: choice
-        options:
-          - self-hosted
-          - ubuntu-latest
       oss_directory:
         description: OSS destination directory (must end with /)
         required: true
@@ -27,7 +19,7 @@ concurrency:
 
 jobs:
   publish:
-    runs-on: ${{ inputs.runs-on || 'self-hosted' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Check out repository
