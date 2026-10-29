@@ -106,9 +106,47 @@ templates:
       --tool-call-parser qwen3_coder
       --reasoning-parser qwen3
       --speculative-config '{"method":"mtp","num_speculative_tokens":3}'
-
-  - key: ascend-310p-qwen3-6-27b-w8a8
+ 
+  - key: ascend-310p-qwen3-6-35b-a3b
     sort: 40
+    name: "Ascend-310P-Qwen3.6-35B-A3B"
+    imageType: ascend
+    model: "Qwen3.6-35B-A3B"
+    description:
+      en: "Qwen3.6-35B-A3B launch configuration for Ascend 310p"
+      es-es: "Configuración de inicio de Qwen3.6-35B-A3B para Ascend 310p"
+      ja: "Ascend 310p 向けの Qwen3.6-35B-A3B 起動設定"
+      ko: "Ascend 310p용 Qwen3.6-35B-A3B 실행 설정"
+      ms: "Konfigurasi pelancaran Qwen3.6-35B-A3B untuk Ascend 310p"
+      pt-br: "Configuração de inicialização do Qwen3.6-35B-A3B para Ascend 310p"
+      ru: "Конфигурация запуска Qwen3.6-35B-A3B для Ascend 310p"
+      tr: "Ascend 310p için Qwen3.6-35B-A3B başlatma yapılandırması"
+      zh-hant: "適用於 Ascend 310p 的 Qwen3.6-35B-A3B 啟動設定"
+      zh: "适用于 Ascend 310p 的 Qwen3.6-35B-A3B 启动配置"
+    command: >-
+      /models/Qwen3.6-35B-A3B
+      --served-model-name Qwen3.6-35B-A3B
+      --host 0.0.0.0
+      --port 8000
+      --data-parallel-size 1
+      --tensor-parallel-size 2
+      --max-num-seqs 32
+      --max-model-len 262144
+      --max-num-batched-tokens 8192
+      --async-scheduling
+      --trust-remote-code
+      --gpu-memory-utilization 0.75
+      --enable-prefix-caching
+      --enable-auto-tool-choice
+      --enable-expert-parallel
+      --tool-call-parser qwen3_coder
+      --reasoning-parser qwen3
+      --speculative-config '{"method":"qwen3_5_mtp","num_speculative_tokens":3,"enforce_eager":true}'
+      --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'
+      --additional-config '{"enable_cpu_binding":true,"multistream_overlap_shared_expert":true}'
+  
+  - key: ascend-310p-qwen3-6-27b-w8a8
+    sort: 50
     name: "Ascend-310P-Qwen3.6-27B-W8A8"
     imageType: ascend
     model: "Qwen3.6-27B-w8a8"
@@ -145,22 +183,22 @@ templates:
       --tool-call-parser qwen3_coder
       --disable-log-stats
 
-  - key: deepseek-v4-flash-0731
-    sort: 50
-    name: "DeepSeek-V4-Flash-0731"
+  - key: rtx-pro5000-4x-deepseek-v4-flash-0731
+    sort: 60
+    name: "RTX-Pro5000-4x-DeepSeek-V4-Flash-0731"
     imageType: nvidia
     model: "DeepSeek-V4-Flash-0731"
     description:
-      en: "DeepSeek-V4-Flash-0731 launch configuration for NVIDIA"
-      es-es: "Configuración de inicio de DeepSeek-V4-Flash-0731 para NVIDIA"
-      ja: "NVIDIA 向けの DeepSeek-V4-Flash-0731 起動設定"
-      ko: "NVIDIA용 DeepSeek-V4-Flash-0731 실행 설정"
-      ms: "Konfigurasi pelancaran DeepSeek-V4-Flash-0731 untuk NVIDIA"
-      pt-br: "Configuração de inicialização do DeepSeek-V4-Flash-0731 para NVIDIA"
-      ru: "Конфигурация запуска DeepSeek-V4-Flash-0731 для NVIDIA"
+      en: "DeepSeek-V4-Flash-0731 launch configuration for NVIDIA 4 × RTX Pro 5000"
+      es-es: "Configuración de inicio de DeepSeek-V4-Flash-0731 para NVIDIA 4 × RTX Pro 5000"
+      ja: "NVIDIA 4 × RTX Pro 5000 向けの DeepSeek-V4-Flash-0731 起動設定"
+      ko: "NVIDIA 4 × RTX Pro 5000용 DeepSeek-V4-Flash-0731 실행 설정"
+      ms: "Konfigurasi pelancaran DeepSeek-V4-Flash-0731 untuk NVIDIA 4 × RTX Pro 5000"
+      pt-br: "Configuração de inicialização do DeepSeek-V4-Flash-0731 para NVIDIA 4 × RTX Pro 5000"
+      ru: "Конфигурация запуска DeepSeek-V4-Flash-0731 для NVIDIA 4 × RTX Pro 5000"
       tr: "NVIDIA için DeepSeek-V4-Flash-0731 başlatma yapılandırması"
-      zh-hant: "適用於 NVIDIA 的 DeepSeek-V4-Flash-0731 啟動設定"
-      zh: "适用于 NVIDIA 的 DeepSeek-V4-Flash-0731 启动配置"
+      zh-hant: "適用於 NVIDIA 4 × RTX Pro 5000 的 DeepSeek-V4-Flash-0731 啟動設定"
+      zh: "适用于 NVIDIA 4 × RTX Pro 5000 的 DeepSeek-V4-Flash-0731 启动配置"
     command: >-
       /models/DeepSeek-V4-Flash-0731
       --served-model-name DeepSeek-V4-Flash
@@ -182,44 +220,6 @@ templates:
       --moe-backend auto
       --no-enable-flashinfer-autotune
       --compilation-config '{"cudagraph_mode":"FULL_AND_PIECEWISE","custom_ops":["all"]}'
-
-  - key: ascend-qwen3-6-35b-a3b
-    sort: 60
-    name: "Ascend-Qwen3.6-35B-A3B"
-    imageType: ascend
-    model: "Qwen3.6-35B-A3B"
-    description:
-      en: "Qwen3.6-35B-A3B launch configuration for Ascend"
-      es-es: "Configuración de inicio de Qwen3.6-35B-A3B para Ascend"
-      ja: "Ascend 向けの Qwen3.6-35B-A3B 起動設定"
-      ko: "Ascend용 Qwen3.6-35B-A3B 실행 설정"
-      ms: "Konfigurasi pelancaran Qwen3.6-35B-A3B untuk Ascend"
-      pt-br: "Configuração de inicialização do Qwen3.6-35B-A3B para Ascend"
-      ru: "Конфигурация запуска Qwen3.6-35B-A3B для Ascend"
-      tr: "Ascend için Qwen3.6-35B-A3B başlatma yapılandırması"
-      zh-hant: "適用於 Ascend 的 Qwen3.6-35B-A3B 啟動設定"
-      zh: "适用于 Ascend 的 Qwen3.6-35B-A3B 启动配置"
-    command: >-
-      /models/Qwen3.6-35B-A3B
-      --served-model-name Qwen3.6-35B-A3B
-      --host 0.0.0.0
-      --port 8000
-      --data-parallel-size 1
-      --tensor-parallel-size 2
-      --max-num-seqs 32
-      --max-model-len 262144
-      --max-num-batched-tokens 8192
-      --async-scheduling
-      --trust-remote-code
-      --gpu-memory-utilization 0.75
-      --enable-prefix-caching
-      --enable-auto-tool-choice
-      --enable-expert-parallel
-      --tool-call-parser qwen3_coder
-      --reasoning-parser qwen3
-      --speculative-config '{"method":"qwen3_5_mtp","num_speculative_tokens":3,"enforce_eager":true}'
-      --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}'
-      --additional-config '{"enable_cpu_binding":true,"multistream_overlap_shared_expert":true}'
 
   - key: rtx-pro5000-4x-qwen3-8-flash-next-nvfp4
     sort: 70
