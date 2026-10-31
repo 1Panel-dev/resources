@@ -2,7 +2,7 @@
 # N/A means not applicable; undisclosed means not publicly disclosed.
 # approximateWeightSizeGB describes weight storage size, not runtime GPU memory.
 # sources lists available download platforms in preference order: modelscope, huggingface.
-# Each source must provide the exact repository ID in name; differently named mirrors are excluded.
+# sourceModelIds optionally overrides the repository ID per source; otherwise use name.
 models:
   - key: qwen-qwen3-6-35b-a3b
     sort: 10
@@ -52,7 +52,9 @@ models:
     sort: 30
     category: "Qwen"
     name: "nvidia/Qwen3.6-35B-A3B-NVFP4"
-    sources: ["huggingface"]
+    sources: ["modelscope", "huggingface"]
+    sourceModelIds:
+      modelscope: "nv-community/Qwen3.6-35B-A3B-NVFP4"
     modelType: "MoE"
     moeBackboneParameters: "35B"
     activeParameters: "3B"
@@ -118,7 +120,9 @@ models:
     sort: 60
     category: "Qwen"
     name: "nvidia/Qwen3.8-27B-NVFP4"
-    sources: ["huggingface"]
+    sources: ["modelscope", "huggingface"]
+    sourceModelIds:
+      modelscope: "nv-community/Qwen3.8-27B-NVFP4"
     modelType: "Dense"
     moeBackboneParameters: "N/A"
     activeParameters: "N/A"
@@ -184,7 +188,9 @@ models:
     sort: 90
     category: "Qwen"
     name: "nvidia/Qwen3.8-Flash-Next-NVFP4"
-    sources: ["huggingface"]
+    sources: ["modelscope", "huggingface"]
+    sourceModelIds:
+      modelscope: "nv-community/Qwen3.8-Flash-Next-NVFP4"
     modelType: "MoE"
     moeBackboneParameters: "125B"
     activeParameters: "6B"
@@ -272,7 +278,9 @@ models:
     sort: 130
     category: "DeepSeek"
     name: "nvidia/DeepSeek-V4.1-Flash-1017-NVFP4"
-    sources: ["huggingface"]
+    sources: ["modelscope", "huggingface"]
+    sourceModelIds:
+      modelscope: "nv-community/DeepSeek-V4.1-Flash-1017-NVFP4"
     modelType: "MoE"
     moeBackboneParameters: "552B"
     activeParameters: "8B/16B"
@@ -294,7 +302,9 @@ models:
     sort: 140
     category: "GLM"
     name: "zai-org/GLM-5.3-Flash"
-    sources: ["huggingface"]
+    sources: ["modelscope", "huggingface"]
+    sourceModelIds:
+      modelscope: "ZhipuAI/GLM-5.3-Flash"
     modelType: "MoE"
     moeBackboneParameters: "320B"
     activeParameters: "18B"
@@ -316,7 +326,9 @@ models:
     sort: 150
     category: "GLM"
     name: "nvidia/GLM-5.3-Flash-NVFP4"
-    sources: ["huggingface"]
+    sources: ["modelscope", "huggingface"]
+    sourceModelIds:
+      modelscope: "nv-community/GLM-5.3-Flash-NVFP4"
     modelType: "MoE"
     moeBackboneParameters: "320B"
     activeParameters: "18B"
