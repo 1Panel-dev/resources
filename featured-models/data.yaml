@@ -268,8 +268,30 @@ models:
       zh-hant: "官方 FP4+FP8 混合精度"
       zh: "官方 FP4+FP8 混合精度"
 
-  - key: zai-org-glm-5-3-flash
+  - key: nvidia-deepseek-v4-1-flash-1017-nvfp4
     sort: 130
+    category: "DeepSeek"
+    name: "nvidia/DeepSeek-V4.1-Flash-1017-NVFP4"
+    sources: ["huggingface"]
+    modelType: "MoE"
+    moeBackboneParameters: "552B"
+    activeParameters: "8B/16B"
+    engramParameters: "196B"
+    approximateWeightSizeGB: 429
+    description:
+      en: "Blackwell-only NVFP4 mixed-precision quantization"
+      es-es: "Cuantización NVFP4 de precisión mixta exclusiva para Blackwell"
+      ja: "Blackwell 専用の NVFP4 混合精度量子化"
+      ko: "Blackwell 전용 NVFP4 혼합 정밀도 양자화"
+      ms: "Pengkuantuman ketepatan campuran NVFP4 khusus untuk Blackwell"
+      pt-br: "Quantização NVFP4 de precisão mista exclusiva para Blackwell"
+      ru: "Квантование NVFP4 со смешанной точностью исключительно для Blackwell"
+      tr: "Blackwell’e özel NVFP4 karma hassasiyetli kuantizasyon"
+      zh-hant: "Blackwell 專用 NVFP4 混合精度量化"
+      zh: "Blackwell 专用 NVFP4 混合精度量化"
+
+  - key: zai-org-glm-5-3-flash
+    sort: 140
     category: "GLM"
     name: "zai-org/GLM-5.3-Flash"
     sources: ["huggingface"]
@@ -291,7 +313,7 @@ models:
       zh: "官方 FP8 量化版"
 
   - key: nvidia-glm-5-3-flash-nvfp4
-    sort: 140
+    sort: 150
     category: "GLM"
     name: "nvidia/GLM-5.3-Flash-NVFP4"
     sources: ["huggingface"]
