@@ -30,7 +30,6 @@ templates:
       --enable-prefix-caching
       --max-num-batched-tokens 65536
       --max-num-seqs 64
-      --swap-space 16
       --attention-backend FLASH_ATTN
       --disable-log-stats
       --default-chat-template-kwargs '{"enable_thinking": false}'
