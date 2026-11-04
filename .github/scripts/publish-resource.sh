@@ -34,6 +34,17 @@ if [[ "$resource" == vllm-recipes ]]; then
   # Clients read vllm-recipes/sh/<key>.sh inside vllm-recipes.tar.gz.
   mkdir -p "$upload_dir/package/vllm-recipes/sh"
   cp "$source_dir/"*.sh "$upload_dir/package/vllm-recipes/sh/"
+  # Strip a leading UTF-8 BOM from packaged scripts, preserving all other bytes.
+  python3 - "$upload_dir/package/vllm-recipes/sh" <<'PY'
+import codecs
+import sys
+from pathlib import Path
+
+for script in Path(sys.argv[1]).glob("*.sh"):
+    content = script.read_bytes()
+    if content.startswith(codecs.BOM_UTF8):
+        script.write_bytes(content[len(codecs.BOM_UTF8):])
+PY
   COPYFILE_DISABLE=1 tar -czf "$upload_dir/vllm-recipes.tar.gz" -C "$upload_dir/package" vllm-recipes
 fi
 
