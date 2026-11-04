@@ -5,7 +5,7 @@ resource=${1:?Usage: publish-resource.sh RESOURCE OSS_DIRECTORY}
 oss_directory=${2:?Usage: publish-resource.sh RESOURCE OSS_DIRECTORY}
 
 case "$resource" in
-  scripts|vllm-templates|featured-models) ;;
+  scripts|vllm-recipes|featured-models) ;;
   *) printf 'Unsupported resource: %s\n' "$resource" >&2; exit 1 ;;
 esac
 
@@ -30,12 +30,22 @@ if [[ "$resource" == scripts ]]; then
   COPYFILE_DISABLE=1 tar -czf "$upload_dir/scripts.tar.gz" -C "$upload_dir/package" scripts
 fi
 
+if [[ "$resource" == vllm-recipes ]]; then
+  # Clients read vllm-recipes/sh/<key>.sh inside vllm-recipes.tar.gz.
+  mkdir -p "$upload_dir/package/vllm-recipes/sh"
+  cp "$source_dir/"*.sh "$upload_dir/package/vllm-recipes/sh/"
+  COPYFILE_DISABLE=1 tar -czf "$upload_dir/vllm-recipes.tar.gz" -C "$upload_dir/package" vllm-recipes
+fi
+
 # Preserve the existing Unix timestamp version format, without a trailing newline.
 version=$(date +%s)
 printf '%s' "$version" > "$upload_dir/version.txt"
 
 if [[ "$resource" == scripts ]]; then
   ossutil cp -f "$upload_dir/scripts.tar.gz" "${oss_directory}scripts.tar.gz"
+fi
+if [[ "$resource" == vllm-recipes ]]; then
+  ossutil cp -f "$upload_dir/vllm-recipes.tar.gz" "${oss_directory}vllm-recipes.tar.gz"
 fi
 ossutil cp -f "$upload_dir/data.yaml" "${oss_directory}data.yaml"
 # A failed payload upload must not publish a new version marker.
