@@ -1,5 +1,5 @@
-name: Publish vLLM templates to OSS
-run-name: 发布 vLLM 模板 到 ${{ inputs.oss_directory }}
+name: Publish vLLM recipes to OSS
+run-name: 发布 vLLM Recipes 到 ${{ inputs.oss_directory }}
 
 "on":
   workflow_dispatch:
@@ -8,13 +8,13 @@ run-name: 发布 vLLM 模板 到 ${{ inputs.oss_directory }}
         description: OSS destination directory (must end with /)
         required: true
         type: string
-        default: oss://resource-fit2cloud-com/1panel/resource/v2/vllm-templates/
+        default: oss://resource-fit2cloud-com/1panel/resource/v2/vllm-recipes/
 
 permissions:
   contents: read
 
 concurrency:
-  group: publish-vllm-templates-oss
+  group: publish-vllm-recipes-oss
   cancel-in-progress: false
 
 jobs:
@@ -27,10 +27,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Publish vLLM templates
+      - name: Publish vLLM recipes
         uses: ./.github/actions/publish-resource
         with:
-          resource: vllm-templates
+          resource: vllm-recipes
           oss-directory: ${{ inputs.oss_directory }}
         env:
           OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
