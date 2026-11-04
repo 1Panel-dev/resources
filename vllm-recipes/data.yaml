@@ -1,0 +1,28 @@
+vllm-recipes:
+  sh:
+    - key: run-qwen3.6-35b-a3b-on-1-gb10
+      sort: 10
+      groups: gb10
+      interactive: false
+      name:
+        en: "Run Qwen3.6-35B-A3B on 1× GB10"
+        es-es: "Ejecutar Qwen3.6-35B-A3B en 1× GB10"
+        ja: "1× GB10 で Qwen3.6-35B-A3B を実行"
+        ko: "1× GB10에서 Qwen3.6-35B-A3B 실행"
+        ms: "Jalankan Qwen3.6-35B-A3B pada 1× GB10"
+        pt-br: "Executar Qwen3.6-35B-A3B em 1× GB10"
+        ru: "Запуск Qwen3.6-35B-A3B на 1× GB10"
+        tr: "Qwen3.6-35B-A3B'yi 1× GB10 üzerinde çalıştır"
+        zh-hant: "在 1× GB10 上執行 Qwen3.6-35B-A3B"
+        zh: "在 1× GB10 上运行 Qwen3.6-35B-A3B"
+      description:
+        en: "Qwen3.6-35B-A3B MoE model with 35B total and 3B active parameters on a single GB10"
+        es-es: "Modelo MoE Qwen3.6-35B-A3B con 35B parámetros totales y 3B activos en una única GB10"
+        ja: "35B 総パラメータ・3B アクティブの MoE モデル Qwen3.6-35B-A3B を単一の GB10 で実行"
+        ko: "35B 전체 · 3B 활성 파라미터의 MoE 모델 Qwen3.6-35B-A3B를 단일 GB10에서 실행"
+        ms: "Model MoE Qwen3.6-35B-A3B dengan 35B parameter keseluruhan dan 3B aktif pada satu GB10"
+        pt-br: "Modelo MoE Qwen3.6-35B-A3B com 35B parâmetros totais e 3B ativos em uma única GB10"
+        ru: "MoE-модель Qwen3.6-35B-A3B с 35B общих и 3B активных параметров на одном GB10"
+        tr: "35B toplam ve 3B aktif parametreli MoE modeli Qwen3.6-35B-A3B'yi tek bir GB10 üzerinde çalıştır"
+        zh-hant: "在單張 GB10 上執行 Qwen3.6-35B-A3B MoE 模型（35B 總參數、3B 啟動參數）"
+        zh: "在单张 GB10 上运行 Qwen3.6-35B-A3B MoE 模型（35B 总参数、3B 激活参数）"
