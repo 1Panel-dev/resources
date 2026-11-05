@@ -15,3 +15,19 @@ recipes:
       tr: "35B toplam ve 3B aktif parametreli MoE modeli Qwen3.6-35B-A3B'yi tek bir GB10 üzerinde çalıştır"
       zh-hant: "在單張 GB10 上執行 Qwen3.6-35B-A3B MoE 模型（35B 總參數、3B 啟動參數）"
       zh: "在单张 GB10 上运行 Qwen3.6-35B-A3B MoE 模型（35B 总参数、3B 激活参数）"
+  - key: run-qwen3.8-flash-next-nvfp4-on-2-rtx-pro-5000-72g
+    sort: 20
+    name: "Qwen3.8-Flash-Next-NVFP4"
+    imageType: nvidia
+    model: "nvidia/Qwen3.8-Flash-Next-NVFP4"
+    description:
+      en: "Qwen3.8-Flash-Next-NVFP4 MoE model with 125B total and 6B active parameters on two RTX PRO 5000 72G GPUs"
+      es-es: "Modelo MoE Qwen3.8-Flash-Next-NVFP4 con 125B parámetros totales y 6B activos en dos GPU RTX PRO 5000 de 72G"
+      ja: "125B 総パラメータ・6B アクティブの MoE モデル Qwen3.8-Flash-Next-NVFP4 を 2 基の RTX PRO 5000 72G で実行"
+      ko: "125B 전체 · 6B 활성 파라미터의 MoE 모델 Qwen3.8-Flash-Next-NVFP4를 RTX PRO 5000 72G 2장에서 실행"
+      ms: "Model MoE Qwen3.8-Flash-Next-NVFP4 dengan 125B parameter keseluruhan dan 6B aktif pada dua RTX PRO 5000 72G"
+      pt-br: "Modelo MoE Qwen3.8-Flash-Next-NVFP4 com 125B parâmetros totais e 6B ativos em duas RTX PRO 5000 de 72G"
+      ru: "MoE-модель Qwen3.8-Flash-Next-NVFP4 с 125B общих и 6B активных параметров на двух RTX PRO 5000 72G"
+      tr: "125B toplam ve 6B aktif parametreli MoE modeli Qwen3.8-Flash-Next-NVFP4'yi iki adet RTX PRO 5000 72G üzerinde çalıştır"
+      zh-hant: "在兩張 RTX PRO 5000 72G 上執行 Qwen3.8-Flash-Next-NVFP4 MoE 模型（125B 總參數、6B 啟動參數）"
+      zh: "在两张 RTX PRO 5000 72G 上运行 Qwen3.8-Flash-Next-NVFP4 MoE 模型（125B 总参数、6B 激活参数）"

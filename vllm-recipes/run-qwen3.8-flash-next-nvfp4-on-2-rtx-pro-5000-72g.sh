@@ -1,0 +1,28 @@
+docker run --gpus all \
+  --ipc=host -p 8000:8000 \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -e VLLM_USE_RUST_FRONTEND=1 \
+  -e VLLM_ALLOW_LONG_MAX_MODEL_LEN=1 \
+  vllm/vllm-openai:v0.33.0 nvidia/Qwen3.8-Flash-Next-NVFP4 \
+  --trust-remote-code \
+  --tensor-parallel-size 2 \
+  --enable-expert-parallel \
+  --moe-backend marlin \
+  --kv-cache-dtype fp8 \
+  --attention-config.indexer_kv_dtype fp8 \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 1000000 \
+  --max-num-seqs 16 \
+  --max-num-batched-tokens 8192 \
+  --enable-prefix-caching \
+  --linear-backend cutlass \
+  --disable-custom-all-reduce \
+  --disable-flashinfer-autotune \
+  --enable-prompt-tokens-details \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_xml \
+  --reasoning-parser qwen3 \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":3}' \
+  --default-chat-template-kwargs '{"enable_thinking":false}' \
+  --hf-overrides '{"text_config":{"rope_parameters":{"mrope_interleaved":true,"mrope_section":[11,11,10],"rope_type":"yarn","rope_theta":10000000,"partial_rotary_factor":0.25,"factor":4.0,"original_max_position_embeddings":262144}}}' \
+  --engram-config '{"cpu_offload":true}'
