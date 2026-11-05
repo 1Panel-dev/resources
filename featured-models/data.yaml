@@ -218,6 +218,29 @@ models:
       zh-hant: "Blackwell 專用 NVFP4 混合精度量化"
       zh: "Blackwell 专用 NVFP4 混合精度量化"
 
+  - key: qwen-qwen3guard-stream-4b
+    sort: 95
+    category: "Qwen"
+    name: "Qwen/Qwen3Guard-Stream-4B"
+    weightProvider: "Qwen"
+    sources: ["modelscope", "huggingface"]
+    modelType: "Dense"
+    moeBackboneParameters: "N/A"
+    activeParameters: "N/A"
+    engramParameters: "N/A"
+    approximateWeightSizeGB: 8
+    description:
+      en: "Official BF16 streaming safety moderation model"
+      es-es: "Modelo oficial BF16 de moderación de seguridad en tiempo real"
+      ja: "公式 BF16 ストリーミング安全性モデレーションモデル"
+      ko: "공식 BF16 스트리밍 안전성 검토 모델"
+      ms: "Model moderasi keselamatan penstriman BF16 rasmi"
+      pt-br: "Modelo oficial BF16 de moderação de segurança em streaming"
+      ru: "Официальная модель BF16 для потоковой модерации безопасности"
+      tr: "Resmî BF16 akış güvenliği denetim modeli"
+      zh-hant: "官方 BF16 串流安全審核模型"
+      zh: "官方 BF16 流式安全审核模型"
+
   - key: deepseek-ai-deepseek-v4-flash-0731
     sort: 100
     category: "DeepSeek"
