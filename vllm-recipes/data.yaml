@@ -31,3 +31,19 @@ recipes:
       tr: "125B toplam ve 6B aktif parametreli MoE modeli Qwen3.8-Flash-Next-NVFP4'yi iki adet RTX PRO 5000 72G üzerinde çalıştır"
       zh-hant: "在兩張 RTX PRO 5000 72G 上執行 Qwen3.8-Flash-Next-NVFP4 MoE 模型（125B 總參數、6B 啟動參數）"
       zh: "在两张 RTX PRO 5000 72G 上运行 Qwen3.8-Flash-Next-NVFP4 MoE 模型（125B 总参数、6B 激活参数）"
+  - key: run-qwen3.8-27b-fp8-on-1-rtx-pro-5000-72g
+    sort: 30
+    name: "Qwen3.8-27B-FP8"
+    imageType: nvidia
+    model: "Qwen/Qwen3.8-27B-FP8"
+    description:
+      en: "Qwen3.8-27B-FP8 dense model with 27B parameters on a single RTX PRO 5000 72G GPU"
+      es-es: "Modelo denso Qwen3.8-27B-FP8 con 27B parámetros en una única GPU RTX PRO 5000 de 72G"
+      ja: "27B パラメータの Dense モデル Qwen3.8-27B-FP8 を単一の RTX PRO 5000 72G で実行"
+      ko: "27B 파라미터의 Dense 모델 Qwen3.8-27B-FP8를 단일 RTX PRO 5000 72G에서 실행"
+      ms: "Model padat Qwen3.8-27B-FP8 dengan 27B parameter pada satu GPU RTX PRO 5000 72G"
+      pt-br: "Modelo denso Qwen3.8-27B-FP8 com 27B parâmetros em uma única GPU RTX PRO 5000 de 72G"
+      ru: "Плотная модель Qwen3.8-27B-FP8 с 27B параметров на одной RTX PRO 5000 72G"
+      tr: "27B parametreli yoğun model Qwen3.8-27B-FP8'yi tek bir RTX PRO 5000 72G üzerinde çalıştır"
+      zh-hant: "在單張 RTX PRO 5000 72G 上執行 Qwen3.8-27B-FP8 稠密模型（27B 參數）"
+      zh: "在单张 RTX PRO 5000 72G 上运行 Qwen3.8-27B-FP8 稠密模型（27B 参数）"
