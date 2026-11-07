@@ -31,3 +31,35 @@ recipes:
       tr: "125B toplam ve 6B aktif parametreli MoE modeli Qwen3.8-Flash-Next-NVFP4'yi iki adet RTX PRO 5000 72G üzerinde çalıştır"
       zh-hant: "在兩張 RTX PRO 5000 72G 上執行 Qwen3.8-Flash-Next-NVFP4 MoE 模型（125B 總參數、6B 啟動參數）"
       zh: "在两张 RTX PRO 5000 72G 上运行 Qwen3.8-Flash-Next-NVFP4 MoE 模型（125B 总参数、6B 激活参数）"
+  - key: run-deepseek-v4.1-flash-1017-512k-on-8-gpus
+    sort: 30
+    name: "DeepSeek-V4.1-Flash-1017 (8 GPUs, 512K)"
+    imageType: nvidia
+    model: "deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    description:
+      en: "Run DeepSeek-V4.1-Flash-1017 in official FP4+FP8 mixed precision on eight GPUs with 512K context, no Engram CPU offload and no speculative decoding"
+      es-es: "Ejecuta DeepSeek-V4.1-Flash-1017 con precisión mixta FP4+FP8 oficial en ocho GPU, contexto de 512K, sin descarga de Engram a CPU ni decodificación especulativa"
+      ja: "8 基の GPU で公式 FP4+FP8 混合精度の DeepSeek-V4.1-Flash-1017 を実行。512K コンテキスト、Engram の CPU オフロードなし、投機的デコーディングなし"
+      ko: "GPU 8장에서 공식 FP4+FP8 혼합 정밀도 DeepSeek-V4.1-Flash-1017 실행. 512K 컨텍스트, Engram CPU 오프로딩 및 추측 디코딩 비활성화"
+      ms: "Jalankan DeepSeek-V4.1-Flash-1017 dalam ketepatan campuran FP4+FP8 rasmi pada lapan GPU dengan konteks 512K, tanpa pemindahan Engram ke CPU atau penyahkodan spekulatif"
+      pt-br: "Execute DeepSeek-V4.1-Flash-1017 com precisão mista FP4+FP8 oficial em oito GPUs, contexto de 512K, sem descarregamento de Engram para CPU nem decodificação especulativa"
+      ru: "Запуск DeepSeek-V4.1-Flash-1017 с официальной смешанной точностью FP4+FP8 на восьми GPU: контекст 512K, без выгрузки Engram в CPU и спекулятивного декодирования"
+      tr: "DeepSeek-V4.1-Flash-1017'yi sekiz GPU üzerinde resmi FP4+FP8 karma hassasiyet ve 512K bağlam ile, Engram CPU aktarımı ve spekülatif kod çözme olmadan çalıştır"
+      zh-hant: "在八張 GPU 上以官方 FP4+FP8 混合精度執行 DeepSeek-V4.1-Flash-1017，512K 上下文，Engram 不卸載至 CPU，不啟用投機解碼"
+      zh: "在八张 GPU 上以官方 FP4+FP8 混合精度运行 DeepSeek-V4.1-Flash-1017，512K 上下文，Engram 不卸载至 CPU，不开启投机解码"
+  - key: run-deepseek-v4.1-flash-1017-1m-dspark-on-8-gpus
+    sort: 40
+    name: "DeepSeek-V4.1-Flash-1017 (8 GPUs, 1M DSpark)"
+    imageType: nvidia
+    model: "deepseek-ai/DeepSeek-V4.1-Flash-1017"
+    description:
+      en: "Run DeepSeek-V4.1-Flash-1017 in official FP4+FP8 mixed precision on eight GPUs with 1M context, Engram CPU offload and DSpark speculative decoding"
+      es-es: "Ejecuta DeepSeek-V4.1-Flash-1017 con precisión mixta FP4+FP8 oficial en ocho GPU, contexto de 1M, descarga de Engram a CPU y decodificación especulativa DSpark"
+      ja: "8 基の GPU で公式 FP4+FP8 混合精度の DeepSeek-V4.1-Flash-1017 を実行。1M コンテキスト、Engram の CPU オフロードと DSpark 投機的デコーディングを有効化"
+      ko: "GPU 8장에서 공식 FP4+FP8 혼합 정밀도 DeepSeek-V4.1-Flash-1017 실행. 1M 컨텍스트, Engram CPU 오프로딩 및 DSpark 추측 디코딩 활성화"
+      ms: "Jalankan DeepSeek-V4.1-Flash-1017 dalam ketepatan campuran FP4+FP8 rasmi pada lapan GPU dengan konteks 1M, pemindahan Engram ke CPU dan penyahkodan spekulatif DSpark"
+      pt-br: "Execute DeepSeek-V4.1-Flash-1017 com precisão mista FP4+FP8 oficial em oito GPUs, contexto de 1M, descarregamento de Engram para CPU e decodificação especulativa DSpark"
+      ru: "Запуск DeepSeek-V4.1-Flash-1017 с официальной смешанной точностью FP4+FP8 на восьми GPU: контекст 1M, выгрузка Engram в CPU и спекулятивное декодирование DSpark"
+      tr: "DeepSeek-V4.1-Flash-1017'yi sekiz GPU üzerinde resmi FP4+FP8 karma hassasiyet, 1M bağlam, Engram CPU aktarımı ve DSpark spekülatif kod çözme ile çalıştır"
+      zh-hant: "在八張 GPU 上以官方 FP4+FP8 混合精度執行 DeepSeek-V4.1-Flash-1017，1M 上下文，啟用 Engram CPU 卸載及 DSpark 投機解碼"
+      zh: "在八张 GPU 上以官方 FP4+FP8 混合精度运行 DeepSeek-V4.1-Flash-1017，1M 上下文，启用 Engram CPU 卸载及 DSpark 投机解码"

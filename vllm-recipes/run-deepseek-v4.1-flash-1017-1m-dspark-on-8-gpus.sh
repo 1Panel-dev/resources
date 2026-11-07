@@ -1,0 +1,26 @@
+docker run --gpus all \
+  --ipc=host -p 8000:8000 \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -e VLLM_USE_RUST_FRONTEND=1 \
+  vllm/vllm-openai:v0.33.0 deepseek-ai/DeepSeek-V4.1-Flash-1017 \
+  --tensor-parallel-size 8 \
+  --enable-expert-parallel \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 1048576 \
+  --kv-cache-dtype fp8 \
+  --block-size 64 \
+  --max-num-batched-tokens 8192 \
+  --enable-prefix-caching \
+  --enable-prompt-tokens-details \
+  --tokenizer-mode deepseek_v41 \
+  --attention-config '{"backend":"FLASHINFER_MLA_SPARSE_DSV41","indexer_kv_dtype":"fp8","indexer_sparse_logits":true}' \
+  --max-num-seqs 12 \
+  --engram-config '{"cpu_offload":true}' \
+  --reasoning-parser deepseek_v41 \
+  --enable-auto-tool-choice \
+  --tool-call-parser deepseek_v41 \
+  --default-chat-template-kwargs '{"enable_thinking":false}' \
+  --numa-bind \
+  --numa-bind-nodes 0 0 0 0 1 1 1 1 \
+  --speculative-config '{"method":"dspark","num_speculative_tokens":5,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' \
+  --api-key "fit2cloud"
