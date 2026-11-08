@@ -13,7 +13,7 @@ docker run --gpus all \
   --enable-prompt-tokens-details \
   --enable-prefix-caching \
   --tokenizer-mode deepseek_v41 \
-  --attention-config '{"backend":"FLASHINFER_MLA_SPARSE_DSV41","indexer_kv_dtype":"fp8","indexer_sparse_logits":true}' \
+  --attention-config '{"indexer_kv_dtype":"fp8"}' \
   --max-num-seqs 12 \
   --engram-config '{"cpu_offload":false}' \
   --reasoning-parser deepseek_v41 \
