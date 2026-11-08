@@ -22,5 +22,4 @@ docker run --gpus all \
   --default-chat-template-kwargs '{"enable_thinking":false}' \
   --numa-bind \
   --numa-bind-nodes 0 0 0 0 1 1 1 1 \
-  --speculative-config '{"method":"dspark","num_speculative_tokens":5,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}' \
-  --api-key "fit2cloud"
+  --speculative-config '{"method":"dspark","num_speculative_tokens":5,"draft_sample_method":"probabilistic","rejection_sample_method":"block","enable_adaptive_verification":false}'
