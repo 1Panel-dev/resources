@@ -21,5 +21,4 @@ docker run --gpus all \
   --tool-call-parser deepseek_v41 \
   --default-chat-template-kwargs '{"enable_thinking":false}' \
   --numa-bind \
-  --numa-bind-nodes 0 0 0 0 1 1 1 1 \
-  --api-key "fit2cloud"
+  --numa-bind-nodes 0 0 0 0 1 1 1 1
