@@ -63,3 +63,35 @@ recipes:
       tr: "DeepSeek-V4.1-Flash-1017'yi sekiz GPU üzerinde resmi FP4+FP8 karma hassasiyet, 1M bağlam, Engram CPU aktarımı ve DSpark spekülatif kod çözme ile çalıştır"
       zh-hant: "在八張 GPU 上以官方 FP4+FP8 混合精度執行 DeepSeek-V4.1-Flash-1017，1M 上下文，啟用 Engram CPU 卸載及 DSpark 投機解碼"
       zh: "在八张 GPU 上以官方 FP4+FP8 混合精度运行 DeepSeek-V4.1-Flash-1017，1M 上下文，启用 Engram CPU 卸载及 DSpark 投机解码"
+  - key: run-qwen3.8-27b-fp8-on-1-rtx-pro-5000-72g
+    sort: 50
+    name: "Qwen3.8-27B-FP8 (GPU0)"
+    imageType: nvidia
+    model: "Qwen/Qwen3.8-27B-FP8"
+    description:
+      en: "Qwen3.8-27B-FP8 dense model with 27B parameters on GPU 0 of a dual RTX PRO 5000 72G host"
+      es-es: "Modelo denso Qwen3.8-27B-FP8 con 27B parámetros en la GPU 0 de un equipo con dos RTX PRO 5000 de 72G"
+      ja: "27B パラメータの Dense モデル Qwen3.8-27B-FP8 を、RTX PRO 5000 72G を 2 基搭載したマシンの GPU 0 で実行"
+      ko: "27B 파라미터의 Dense 모델 Qwen3.8-27B-FP8를 RTX PRO 5000 72G 2장 구성에서 GPU 0에서 실행"
+      ms: "Model padat Qwen3.8-27B-FP8 dengan 27B parameter pada GPU 0 dalam hos dua RTX PRO 5000 72G"
+      pt-br: "Modelo denso Qwen3.8-27B-FP8 com 27B parâmetros na GPU 0 de um host com duas RTX PRO 5000 de 72G"
+      ru: "Плотная модель Qwen3.8-27B-FP8 с 27B параметров на GPU 0 в конфигурации с двумя RTX PRO 5000 72G"
+      tr: "27B parametreli yoğun model Qwen3.8-27B-FP8'yi iki RTX PRO 5000 72G bulunan sistemde GPU 0 üzerinde çalıştır"
+      zh-hant: "在雙 RTX PRO 5000 72G 主機的 GPU 0 上執行 Qwen3.8-27B-FP8 稠密模型（27B 參數）"
+      zh: "在双 RTX PRO 5000 72G 主机的 GPU 0 上运行 Qwen3.8-27B-FP8 稠密模型（27B 参数）"
+  - key: run-qwen3.6-35b-a3b-fp8-on-1-rtx-pro-5000-72g
+    sort: 60
+    name: "Qwen3.6-35B-A3B-FP8 (GPU1)"
+    imageType: nvidia
+    model: "Qwen/Qwen3.6-35B-A3B-FP8"
+    description:
+      en: "Qwen3.6-35B-A3B-FP8 MoE model with 35B total and 3B active parameters on GPU 1 of a dual RTX PRO 5000 72G host"
+      es-es: "Modelo MoE Qwen3.6-35B-A3B-FP8 con 35B parámetros totales y 3B activos en la GPU 1 de un equipo con dos RTX PRO 5000 de 72G"
+      ja: "35B 総パラメータ・3B アクティブの MoE モデル Qwen3.6-35B-A3B-FP8 を、RTX PRO 5000 72G を 2 基搭載したマシンの GPU 1 で実行"
+      ko: "35B 전체 · 3B 활성 파라미터의 MoE 모델 Qwen3.6-35B-A3B-FP8를 RTX PRO 5000 72G 2장 구성에서 GPU 1에서 실행"
+      ms: "Model MoE Qwen3.6-35B-A3B-FP8 dengan 35B parameter keseluruhan dan 3B aktif pada GPU 1 dalam hos dua RTX PRO 5000 72G"
+      pt-br: "Modelo MoE Qwen3.6-35B-A3B-FP8 com 35B parâmetros totais e 3B ativos na GPU 1 de um host com duas RTX PRO 5000 de 72G"
+      ru: "MoE-модель Qwen3.6-35B-A3B-FP8 с 35B общих и 3B активных параметров на GPU 1 в конфигурации с двумя RTX PRO 5000 72G"
+      tr: "35B toplam ve 3B aktif parametreli MoE modeli Qwen3.6-35B-A3B-FP8'yi iki RTX PRO 5000 72G bulunan sistemde GPU 1 üzerinde çalıştır"
+      zh-hant: "在雙 RTX PRO 5000 72G 主機的 GPU 1 上執行 Qwen3.6-35B-A3B-FP8 MoE 模型（35B 總參數、3B 啟動參數）"
+      zh: "在双 RTX PRO 5000 72G 主机的 GPU 1 上运行 Qwen3.6-35B-A3B-FP8 MoE 模型（35B 总参数、3B 激活参数）"
