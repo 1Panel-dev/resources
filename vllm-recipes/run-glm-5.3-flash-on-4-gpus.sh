@@ -1,0 +1,23 @@
+docker run --gpus all \
+  --ipc=host -p 8000:8000 \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  vllm/vllm-openai:v0.33.0 zai-org/GLM-5.3-Flash \
+  --tensor-parallel-size 4 \
+  --gpu-memory-utilization 0.95 \
+  --data-parallel-size 1 \
+  --enable-expert-parallel \
+  --enable-ep-weight-filter \
+  --enable-prefix-caching \
+  --enable-prompt-tokens-details \
+  --reasoning-parser glm47 \
+  --tool-call-parser glm47 \
+  --enable-auto-tool-choice \
+  --kv-cache-dtype fp8 \
+  --max-num-batched-tokens 8192 \
+  --enable-chunked-prefill \
+  --max-num-seqs 16 \
+  --no-enable-flashinfer-autotune \
+  --disable-custom-all-reduce \
+  --sparse-indexer-topk-backend flashinfer \
+  --model-loader-extra-config '{"enable_multithread_load": true, "num_threads": 128}' \
+  --default-chat-template-kwargs '{"reasoning_effort":"low"}'

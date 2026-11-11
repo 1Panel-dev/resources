@@ -95,3 +95,19 @@ recipes:
       tr: "35B toplam ve 3B aktif parametreli MoE modeli Qwen3.6-35B-A3B-FP8'yi iki RTX PRO 5000 72G bulunan sistemde GPU 1 üzerinde çalıştır"
       zh-hant: "在雙 RTX PRO 5000 72G 主機的 GPU 1 上執行 Qwen3.6-35B-A3B-FP8 MoE 模型（35B 總參數、3B 啟動參數）"
       zh: "在双 RTX PRO 5000 72G 主机的 GPU 1 上运行 Qwen3.6-35B-A3B-FP8 MoE 模型（35B 总参数、3B 激活参数）"
+  - key: run-glm-5.3-flash-on-4-gpus
+    sort: 70
+    name: "GLM-5.3-Flash (4 GPUs)"
+    imageType: nvidia
+    model: "zai-org/GLM-5.3-Flash"
+    description:
+      en: "Run GLM-5.3-Flash on four GPUs with expert parallelism, FP8 KV cache and low reasoning effort"
+      es-es: "Ejecuta GLM-5.3-Flash en cuatro GPU con paralelismo de expertos, caché KV FP8 y esfuerzo de razonamiento bajo"
+      ja: "4 基の GPU で GLM-5.3-Flash を実行。エキスパート並列、FP8 KV キャッシュ、低い推論努力を使用"
+      ko: "GPU 4장에서 전문가 병렬화, FP8 KV 캐시 및 낮은 추론 노력으로 GLM-5.3-Flash 실행"
+      ms: "Jalankan GLM-5.3-Flash pada empat GPU dengan keselarian pakar, cache KV FP8 dan usaha penaakulan rendah"
+      pt-br: "Execute GLM-5.3-Flash em quatro GPUs com paralelismo de especialistas, cache KV FP8 e baixo esforço de raciocínio"
+      ru: "Запуск GLM-5.3-Flash на четырёх GPU с параллелизмом экспертов, KV-кэшем FP8 и низким уровнем усилий рассуждения"
+      tr: "GLM-5.3-Flash'ı dört GPU üzerinde uzman paralelliği, FP8 KV önbelleği ve düşük akıl yürütme çabası ile çalıştır"
+      zh-hant: "在四張 GPU 上執行 GLM-5.3-Flash，啟用專家並行、FP8 KV 快取及低推理強度"
+      zh: "在四张 GPU 上运行 GLM-5.3-Flash，启用专家并行、FP8 KV 缓存及低推理强度"
