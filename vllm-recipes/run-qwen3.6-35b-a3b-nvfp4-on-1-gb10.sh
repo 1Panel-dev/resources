@@ -1,0 +1,25 @@
+docker run --gpus all \
+  --privileged --ipc=host -p 8000:8000 \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -v /models:/models \
+  -e VLLM_USE_RUST_FRONTEND=1 \
+  vllm/vllm-openai:v0.33.0 Qwen/Qwen3.6-35B-A3B-NVFP4 \
+  --trust-remote-code \
+  --kv-cache-dtype fp8 \
+  --attention-backend flashinfer \
+  --moe-backend marlin \
+  --gpu-memory-utilization 0.7 \
+  --max-model-len 262144 \
+  --max-num-seqs 8 \
+  --max-num-batched-tokens 8192 \
+  --enable-chunked-prefill \
+  --async-scheduling \
+  --enable-prefix-caching \
+  --load-format fastsafetensors \
+  --tensor-parallel-size 1 \
+  --enable-auto-tool-choice \
+  --tool-call-parser qwen3_coder \
+  --reasoning-parser qwen3 \
+  --mm-encoder-tp-mode data \
+  --speculative-config '{"method":"mtp","num_speculative_tokens":3,"moe_backend":"triton"}' \
+  --default-chat-template-kwargs '{"enable_thinking": false}'
