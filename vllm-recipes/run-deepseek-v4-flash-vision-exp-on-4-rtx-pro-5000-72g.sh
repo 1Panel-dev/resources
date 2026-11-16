@@ -1,0 +1,23 @@
+docker run --gpus all \
+  --ipc=host -p 8000:8000 \
+  -v ~/.cache/huggingface:/root/.cache/huggingface \
+  vllm/vllm-openai:v0.33.0 deepseek-ai/DeepSeek-V4-Flash-Vision-Exp \
+  --served-model-name DeepSeek-V4-Flash-Vision-Exp \
+  --tensor-parallel-size 4 \
+  --enable-expert-parallel \
+  --gpu-memory-utilization 0.95 \
+  --max-model-len 262144 \
+  --kv-cache-dtype fp8 \
+  --block-size 256 \
+  --max-num-batched-tokens 16384 \
+  --long-prefill-token-threshold 4096 \
+  --enable-prefix-caching \
+  --enable-prompt-tokens-details \
+  --tokenizer-mode deepseek_v4 \
+  --tool-call-parser deepseek_v4 \
+  --reasoning-parser deepseek_v4 \
+  --enable-auto-tool-choice \
+  --async-scheduling \
+  --moe-backend auto \
+  --no-enable-flashinfer-autotune \
+  --compilation-config '{"cudagraph_mode":"FULL_AND_PIECEWISE","custom_ops":["all"]}'
