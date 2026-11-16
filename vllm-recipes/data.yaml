@@ -111,3 +111,19 @@ recipes:
       tr: "GLM-5.3-Flash'ı dört adet RTX PRO 5000 72G üzerinde uzman paralelliği, FP8 KV önbelleği ve düşük akıl yürütme çabası ile çalıştır"
       zh-hant: "在四張 RTX PRO 5000 72G 上執行 GLM-5.3-Flash，啟用專家並行、FP8 KV 快取及低推理強度"
       zh: "在四张 RTX PRO 5000 72G 上运行 GLM-5.3-Flash，启用专家并行、FP8 KV 缓存及低推理强度"
+  - key: run-deepseek-v4-flash-vision-exp-on-4-rtx-pro-5000-72g
+    sort: 80
+    name: "DeepSeek-V4-Flash-Vision-Exp (4 GPUs)"
+    imageType: nvidia
+    model: "deepseek-ai/DeepSeek-V4-Flash-Vision-Exp"
+    description:
+      en: "Run DeepSeek-V4-Flash-Vision-Exp on four RTX PRO 5000 72G GPUs with expert parallelism, 256K context, FP8 KV cache and full-and-piecewise CUDA graphs"
+      es-es: "Ejecuta DeepSeek-V4-Flash-Vision-Exp en cuatro GPU RTX PRO 5000 de 72G con paralelismo de expertos, contexto de 256K, caché KV FP8 y gráficos CUDA completos y por partes"
+      ja: "4 基の RTX PRO 5000 72G で DeepSeek-V4-Flash-Vision-Exp を実行。エキスパート並列、256K コンテキスト、FP8 KV キャッシュ、FULL_AND_PIECEWISE の CUDA グラフを使用"
+      ko: "RTX PRO 5000 72G 4장에서 전문가 병렬화, 256K 컨텍스트, FP8 KV 캐시 및 FULL_AND_PIECEWISE CUDA 그래프로 DeepSeek-V4-Flash-Vision-Exp 실행"
+      ms: "Jalankan DeepSeek-V4-Flash-Vision-Exp pada empat RTX PRO 5000 72G dengan keselarian pakar, konteks 256K, cache KV FP8 dan graf CUDA penuh-dan-berasingan"
+      pt-br: "Execute DeepSeek-V4-Flash-Vision-Exp em quatro RTX PRO 5000 de 72G com paralelismo de especialistas, contexto de 256K, cache KV FP8 e grafos CUDA completos e por partes"
+      ru: "Запуск DeepSeek-V4-Flash-Vision-Exp на четырёх RTX PRO 5000 72G с параллелизмом экспертов, контекстом 256K, FP8 KV-кэшем и CUDA-графами FULL_AND_PIECEWISE"
+      tr: "DeepSeek-V4-Flash-Vision-Exp'yi dört adet RTX PRO 5000 72G üzerinde uzman paralelliği, 256K bağlam, FP8 KV önbelleği ve FULL_AND_PIECEWISE CUDA grafikleri ile çalıştır"
+      zh-hant: "在四張 RTX PRO 5000 72G 上執行 DeepSeek-V4-Flash-Vision-Exp，啟用專家並行、256K 上下文、FP8 KV 快取及 FULL_AND_PIECEWISE CUDA 圖"
+      zh: "在四张 RTX PRO 5000 72G 上运行 DeepSeek-V4-Flash-Vision-Exp，启用专家并行、256K 上下文、FP8 KV 缓存及 FULL_AND_PIECEWISE CUDA 图"
