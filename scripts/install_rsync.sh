@@ -140,8 +140,20 @@ setup_systemd_service() {
     echo -e "${BLUE}Setting up rsync daemon service...${NC}"
     
     if command -v systemctl >/dev/null 2>&1; then
-        if systemctl cat rsyncd.service >/dev/null 2>&1; then
-            RSYNC_SERVICE=rsyncd
+        local service
+        RSYNC_SERVICE=""
+        # Reuse a running daemon; otherwise prefer the legacy unit if it exists.
+        # Switching units without migrating the old one can make both bind port 873.
+        for service in rsync rsyncd; do
+            if systemctl cat "$service.service" >/dev/null 2>&1; then
+                RSYNC_SERVICE="${RSYNC_SERVICE:-$service}"
+                if systemctl is-active --quiet "$service.service"; then
+                    RSYNC_SERVICE="$service"
+                    break
+                fi
+            fi
+        done
+        if [ -n "$RSYNC_SERVICE" ]; then
             systemctl enable "$RSYNC_SERVICE"
             return
         fi
