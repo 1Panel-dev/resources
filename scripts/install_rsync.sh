@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install and Configure Rsync
-# Support Ubuntu/Debian/CentOS/RHEL/Alpine/Arch Linux
+# Support Ubuntu/Debian/CentOS/RHEL/Rocky/AlmaLinux/TencentOS/OpenCloudOS/CTyunOS/Alpine/Arch Linux
 
 set -e
 
@@ -13,7 +13,7 @@ NC='\033[0m' # No Color
 detect_os() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        OS=$ID
+        OS=$(printf '%s' "$ID" | tr '[:upper:]' '[:lower:]')
         VERSION=$VERSION_ID
     elif type lsb_release >/dev/null 2>&1; then
         OS=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
@@ -27,6 +27,15 @@ detect_os() {
     else
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         VERSION=$(uname -r)
+    fi
+}
+
+# Kept inline: the script library executes each installer independently.
+prepare_rpm() {
+    PKG=$(command -v dnf || command -v yum || true)
+    if [ -z "$PKG" ]; then
+        echo "Neither dnf nor yum was found." >&2
+        return 1
     fi
 }
 
@@ -46,12 +55,9 @@ install_rsync() {
             apt-get update
             apt-get install -y rsync
             ;;
-        centos|rhel|fedora)
-            if [ "$OS" = "rhel" ] && [ "${VERSION%%.*}" -ge 8 ]; then
-                dnf install -y rsync
-            else
-                yum install -y rsync
-            fi
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
+            prepare_rpm
+            "$PKG" install -y rsync
             ;;
         alpine)
             apk add --no-cache rsync
@@ -134,6 +140,11 @@ setup_systemd_service() {
     echo -e "${BLUE}Setting up rsync daemon service...${NC}"
     
     if command -v systemctl >/dev/null 2>&1; then
+        if systemctl cat rsyncd.service >/dev/null 2>&1; then
+            RSYNC_SERVICE=rsyncd
+            systemctl enable "$RSYNC_SERVICE"
+            return
+        fi
         # Check if rsync service exists
         if systemctl list-unit-files | grep -q "^rsync.service"; then
             echo -e "${GREEN}Rsync systemd service already exists${NC}"
@@ -178,13 +189,10 @@ setup_xinetd_service() {
                 apt-get install -y xinetd
             fi
             ;;
-        centos|rhel|fedora)
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
             if ! command -v xinetd >/dev/null 2>&1; then
-                if [ "$OS" = "rhel" ] && [ "${VERSION%%.*}" -ge 8 ]; then
-                    dnf install -y xinetd
-                else
-                    yum install -y xinetd
-                fi
+                prepare_rpm
+                "$PKG" install -y xinetd
             fi
             ;;
         alpine)
@@ -224,7 +232,7 @@ start_service() {
     case "$OS" in
         ubuntu|debian)
             if command -v systemctl >/dev/null 2>&1; then
-                systemctl start rsync 2>/dev/null || {
+                systemctl start "${RSYNC_SERVICE:-rsync}" 2>/dev/null || {
                     echo -e "${YELLOW}Systemd service failed, trying xinetd...${NC}"
                     setup_xinetd_service
                     systemctl enable xinetd
@@ -235,9 +243,9 @@ start_service() {
                 service xinetd start
             fi
             ;;
-        centos|rhel|fedora)
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
             if command -v systemctl >/dev/null 2>&1; then
-                systemctl start rsync 2>/dev/null || {
+                systemctl start "${RSYNC_SERVICE:-rsync}" 2>/dev/null || {
                     echo -e "${YELLOW}Systemd service failed, trying xinetd...${NC}"
                     setup_xinetd_service
                     systemctl enable xinetd
@@ -255,7 +263,7 @@ start_service() {
             ;;
         arch)
             if command -v systemctl >/dev/null 2>&1; then
-                systemctl start rsync 2>/dev/null || {
+                systemctl start "${RSYNC_SERVICE:-rsync}" 2>/dev/null || {
                     echo -e "${YELLOW}Systemd service failed, trying xinetd...${NC}"
                     setup_xinetd_service
                     systemctl enable xinetd
@@ -358,4 +366,6 @@ main() {
     check_status
 }
 
-main "$@"
+if [[ -z "${BASH_SOURCE[0]:-}" || "${BASH_SOURCE[0]:-}" == "$0" ]]; then
+    main "$@"
+fi

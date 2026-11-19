@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Supervisor
-# Support Ubuntu/Debian/CentOS/RHEL/Alpine/Arch Linux
+# Support Ubuntu/Debian/CentOS/RHEL/Rocky/AlmaLinux/TencentOS/OpenCloudOS/CTyunOS/Alpine/Arch Linux
 
 set -e
 
@@ -13,7 +13,7 @@ NC='\033[0m' # No Color
 detect_os() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        OS=$ID
+        OS=$(printf '%s' "$ID" | tr '[:upper:]' '[:lower:]')
         VERSION=$VERSION_ID
     elif type lsb_release >/dev/null 2>&1; then
         OS=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
@@ -30,6 +30,48 @@ detect_os() {
     fi
 }
 
+# Kept inline: the script library executes each installer independently.
+prepare_rpm() {
+    PKG=$(command -v dnf || command -v yum || true)
+    if [ -z "$PKG" ]; then
+        echo "Neither dnf nor yum was found." >&2
+        return 1
+    fi
+}
+
+prepare_extra_repo() {
+    local major="${VERSION%%.*}"
+    case "$OS" in
+        tencentos)
+            case "$major" in
+                2|3) "$PKG" install -y epel-release ;;
+                *) "$PKG" install -y epol-release ;;
+            esac
+            ;;
+        opencloudos)
+            case "$major" in
+                7|8) "$PKG" install -y epel-release ;;
+                *) "$PKG" install -y epol-release ;;
+            esac
+            ;;
+        centos|rhel|rocky|almalinux)
+            # EPEL dependencies on EL 8/9 are supplied by PowerTools/CRB.
+            if [ "$OS" = almalinux ] || [ "$OS" = rocky ]; then
+                "$PKG" install -y dnf-plugins-core
+                if [ "$major" = 8 ]; then
+                    "$PKG" config-manager --set-enabled powertools
+                else
+                    "$PKG" config-manager --set-enabled crb
+                fi
+            fi
+            "$PKG" install -y epel-release
+            ;;
+        # Fedora and CTyunOS use their own configured repositories.
+        # CTyunOS version numbers are not Enterprise Linux release numbers.
+        fedora|ctyunos) ;;
+    esac
+}
+
 install_supervisor() {
     echo -e "${GREEN}Detected system: $OS $VERSION${NC}"
 
@@ -38,12 +80,10 @@ install_supervisor() {
             apt-get update
             apt-get install -y supervisor
             ;;
-        centos|rhel|fedora)
-            if [ "$OS" = "rhel" ] && [ "${VERSION%%.*}" -ge 8 ]; then
-                dnf install -y supervisor
-            else
-                yum install -y supervisor
-            fi
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
+            prepare_rpm
+            prepare_extra_repo
+            "$PKG" install -y supervisor
             ;;
         alpine)
             apk add --no-cache supervisor
@@ -62,22 +102,31 @@ install_supervisor() {
 start_service() {
     echo -e "${GREEN}Start Supervisor...${NC}"
     
+    SUPERVISOR_SERVICE=supervisor
+    if [ "$OS" != alpine ] && command -v systemctl >/dev/null 2>&1; then
+        if systemctl cat supervisord.service >/dev/null 2>&1; then
+            SUPERVISOR_SERVICE=supervisord
+        elif ! systemctl cat supervisor.service >/dev/null 2>&1; then
+            echo "Supervisor systemd service not found." >&2
+            return 1
+        fi
+    fi
     case "$OS" in
         ubuntu|debian)
-            systemctl enable supervisor
-            systemctl restart supervisor
+            systemctl enable "$SUPERVISOR_SERVICE"
+            systemctl restart "$SUPERVISOR_SERVICE"
             ;;
-        centos|rhel|fedora)
-            systemctl enable supervisor
-            systemctl restart supervisor
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
+            systemctl enable "$SUPERVISOR_SERVICE"
+            systemctl restart "$SUPERVISOR_SERVICE"
             ;;
         alpine)
             rc-update add supervisor
             rc-service supervisor start
             ;;
         arch)
-            systemctl enable supervisor
-            systemctl restart supervisor
+            systemctl enable "$SUPERVISOR_SERVICE"
+            systemctl restart "$SUPERVISOR_SERVICE"
             ;;
         *)
             echo -e "${YELLOW}The service cannot be started automatically. Please start manually!${NC}"
@@ -85,7 +134,7 @@ start_service() {
     esac
 
     if command -v systemctl &> /dev/null; then
-        systemctl status supervisor || true
+        systemctl status "$SUPERVISOR_SERVICE" || true
     else
         rc-service supervisor status || true
     fi
@@ -99,4 +148,6 @@ main() {
     start_service
 }
 
-main "$@"
+if [[ -z "${BASH_SOURCE[0]:-}" || "${BASH_SOURCE[0]:-}" == "$0" ]]; then
+    main "$@"
+fi

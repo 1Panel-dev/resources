@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install FFmpeg
-# Support Ubuntu/Debian/CentOS/RHEL/Alpine/Arch Linux
+# Support Ubuntu/Debian/CentOS/RHEL/Rocky/AlmaLinux/TencentOS/OpenCloudOS/CTyunOS/Alpine/Arch Linux
 
 set -e
 
@@ -16,7 +16,7 @@ VERSION=""
 detect_os() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        OS=$ID
+        OS=$(printf '%s' "$ID" | tr '[:upper:]' '[:lower:]')
         VERSION=$VERSION_ID
         if [ -n "$ID_LIKE" ]; then
             OS_LIKE=$ID_LIKE
@@ -37,6 +37,73 @@ detect_os() {
     fi
 }
 
+# Kept inline: the script library executes each installer independently.
+prepare_rpm() {
+    PKG=$(command -v dnf || command -v yum || true)
+    if [ -z "$PKG" ]; then
+        echo "Neither dnf nor yum was found." >&2
+        return 1
+    fi
+}
+
+prepare_extra_repo() {
+    local major="${VERSION%%.*}"
+    case "$OS" in
+        tencentos)
+            case "$major" in
+                2|3) "$PKG" install -y epel-release ;;
+                *) "$PKG" install -y epol-release ;;
+            esac
+            ;;
+        opencloudos)
+            case "$major" in
+                7|8) "$PKG" install -y epel-release ;;
+                *) "$PKG" install -y epol-release ;;
+            esac
+            ;;
+        centos|rhel|rocky|almalinux)
+            # EPEL dependencies on EL 8/9 are supplied by PowerTools/CRB.
+            if [ "$OS" = almalinux ] || [ "$OS" = rocky ]; then
+                "$PKG" install -y dnf-plugins-core
+                if [ "$major" = 8 ]; then
+                    "$PKG" config-manager --set-enabled powertools
+                else
+                    "$PKG" config-manager --set-enabled crb
+                fi
+            fi
+            "$PKG" install -y epel-release
+            ;;
+        # Fedora and CTyunOS use their own configured repositories.
+        # CTyunOS version numbers are not Enterprise Linux release numbers.
+        fedora|ctyunos) ;;
+    esac
+}
+
+install_rpm_ffmpeg() {
+    local release="" repo_family=el
+    # Prefer the distribution's package (EPOL / CTyunOS included).
+    if "$PKG" -q list ffmpeg >/dev/null 2>&1; then
+        "$PKG" install -y ffmpeg
+        return
+    fi
+    case "$OS" in
+        centos|rhel|rocky|almalinux) release="${VERSION%%.*}" ;;
+        tencentos)
+            case "${VERSION%%.*}" in 2) release=7 ;; 3) release=8 ;; esac
+            ;;
+        opencloudos)
+            case "${VERSION%%.*}" in 7|8) release="${VERSION%%.*}" ;; esac
+            ;;
+        fedora) repo_family=fedora; release="${VERSION%%.*}" ;;
+    esac
+    if [[ ! "$release" =~ ^[0-9]+$ ]]; then
+        echo "FFmpeg is unavailable in the configured $OS $VERSION repositories. Enable a distribution-compatible multimedia repository." >&2
+        return 1
+    fi
+    "$PKG" install -y "https://download1.rpmfusion.org/free/$repo_family/rpmfusion-free-release-$release.noarch.rpm"
+    "$PKG" install -y ffmpeg
+}
+
 install_ffmpeg() {
     echo -e "${GREEN}Detected system: $OS $VERSION, start to install FFmpeg...${NC}"
     case "$OS" in
@@ -44,23 +111,10 @@ install_ffmpeg() {
             apt-get update
             apt-get install -y ffmpeg
             ;;
-        centos|rhel|fedora)
-            if [ "$OS" = "rhel" ] && [ "${VERSION%%.*}" -ge 8 ]; then
-                # CentOS 8 / RHEL 8+
-                dnf install -y epel-release
-                dnf install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
-                dnf install -y ffmpeg ffmpeg-devel
-            else
-                # CentOS 7 / RHEL 7
-                yum install -y epel-release
-                yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm
-                yum install -y ffmpeg ffmpeg-devel || {
-                    # fallback to Nux Dextop if still not available
-                    rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
-                    rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
-                    yum install -y ffmpeg ffmpeg-devel
-                }
-            fi
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
+            prepare_rpm
+            prepare_extra_repo
+            install_rpm_ffmpeg
             ;;
         alpine)
             apk update
@@ -91,5 +145,6 @@ main() {
     check_ffmpeg_install
 }
 
-main "$@"
-
+if [[ -z "${BASH_SOURCE[0]:-}" || "${BASH_SOURCE[0]:-}" == "$0" ]]; then
+    main "$@"
+fi
