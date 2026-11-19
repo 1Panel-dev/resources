@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install KVM Environment
-# Support Ubuntu/Debian/CentOS/Rocky/AlmaLinux/RHEL/Kylin
+# Support Ubuntu/Debian/CentOS/Rocky/AlmaLinux/RHEL/Kylin/TencentOS/OpenCloudOS/CTyunOS
 
 set -e
 
@@ -16,7 +16,7 @@ VERSION=""
 detect_os() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        OS="$ID"
+        OS=$(printf '%s' "$ID" | tr '[:upper:]' '[:lower:]')
         VERSION="$VERSION_ID"
 
         case "$OS" in
@@ -51,7 +51,7 @@ install_packages() {
                 virtinst
             ;;
 
-        centos|rocky|almalinux|rhel|kylin)
+        centos|rocky|almalinux|rhel|kylin|tencentos|opencloudos|ctyunos)
             if command -v dnf >/dev/null 2>&1; then
                 PKG=dnf
             elif command -v yum >/dev/null 2>&1; then
@@ -114,4 +114,6 @@ main() {
     print_summary
 }
 
-main "$@"
+if [[ -z "${BASH_SOURCE[0]:-}" || "${BASH_SOURCE[0]:-}" == "$0" ]]; then
+    main "$@"
+fi

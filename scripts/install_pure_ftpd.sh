@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Pure-FTPd
-# Support Ubuntu/Debian/CentOS/RHEL/Alpine/Arch Linux
+# Support Ubuntu/Debian/CentOS/RHEL/Rocky/AlmaLinux/TencentOS/OpenCloudOS/CTyunOS/Alpine/Arch Linux
 
 set -e
 
@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 detect_os() {
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        OS=$ID
+        OS=$(printf '%s' "$ID" | tr '[:upper:]' '[:lower:]')
         VERSION=$VERSION_ID
     elif type lsb_release >/dev/null 2>&1; then
         OS=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
@@ -31,6 +31,48 @@ detect_os() {
     fi
 }
 
+# Kept inline: the script library executes each installer independently.
+prepare_rpm() {
+    PKG=$(command -v dnf || command -v yum || true)
+    if [ -z "$PKG" ]; then
+        echo "Neither dnf nor yum was found." >&2
+        return 1
+    fi
+}
+
+prepare_extra_repo() {
+    local major="${VERSION%%.*}"
+    case "$OS" in
+        tencentos)
+            case "$major" in
+                2|3) "$PKG" install -y epel-release ;;
+                *) "$PKG" install -y epol-release ;;
+            esac
+            ;;
+        opencloudos)
+            case "$major" in
+                7|8) "$PKG" install -y epel-release ;;
+                *) "$PKG" install -y epol-release ;;
+            esac
+            ;;
+        centos|rhel|rocky|almalinux)
+            # EPEL dependencies on EL 8/9 are supplied by PowerTools/CRB.
+            if [ "$OS" = almalinux ] || [ "$OS" = rocky ]; then
+                "$PKG" install -y dnf-plugins-core
+                if [ "$major" = 8 ]; then
+                    "$PKG" config-manager --set-enabled powertools
+                else
+                    "$PKG" config-manager --set-enabled crb
+                fi
+            fi
+            "$PKG" install -y epel-release
+            ;;
+        # Fedora and CTyunOS use their own configured repositories.
+        # CTyunOS version numbers are not Enterprise Linux release numbers.
+        fedora|ctyunos) ;;
+    esac
+}
+
 install_pureftpd() {
     echo -e "${GREEN}Detected system: $OS $VERSION${NC}"
 
@@ -39,14 +81,10 @@ install_pureftpd() {
             apt-get update
             apt-get install -y pure-ftpd
             ;;
-        centos|rhel|fedora)
-            if [ "$OS" = "rhel" ] && [ "${VERSION%%.*}" -ge 8 ]; then
-                dnf install -y epel-release
-                dnf install -y pure-ftpd
-            else
-                yum install -y epel-release
-                yum install -y pure-ftpd
-            fi
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
+            prepare_rpm
+            prepare_extra_repo
+            "$PKG" install -y pure-ftpd
             ;;
         alpine)
             apk add --no-cache pure-ftpd
@@ -71,6 +109,9 @@ configure_pureftpd() {
     
     if [ ! -d "/etc/pure-ftpd/conf" ]; then
         PURE_FTPD_CONF="/etc/pure-ftpd/pure-ftpd.conf"
+        if [ ! -f "$PURE_FTPD_CONF" ] && [ -f /etc/pure-ftpd.conf ]; then
+            PURE_FTPD_CONF=/etc/pure-ftpd.conf
+        fi
         cp "$PURE_FTPD_CONF" "$PURE_FTPD_CONF.bak"
         sed -i 's/^NoAnonymous[[:space:]]\+no$/NoAnonymous yes/' "$PURE_FTPD_CONF"
         sed -i 's/^PAMAuthentication[[:space:]]\+yes$/PAMAuthentication no/' "$PURE_FTPD_CONF"
@@ -87,7 +128,7 @@ configure_pureftpd() {
         echo 'no' > /etc/pure-ftpd/conf/PAMAuthentication
         echo 'no' > /etc/pure-ftpd/conf/UnixAuthentication
         echo 'clf:/var/log/pure-ftpd/transfer.log' > /etc/pure-ftpd/conf/AltLog
-        ln -s /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/50puredb
+        ln -sf /etc/pure-ftpd/conf/PureDB /etc/pure-ftpd/auth/50puredb
     fi
 }
 
@@ -99,7 +140,7 @@ start_service() {
             systemctl enable pure-ftpd
             systemctl restart pure-ftpd
             ;;
-        centos|rhel|fedora)
+        centos|rhel|fedora|rocky|almalinux|tencentos|opencloudos|ctyunos)
             systemctl enable pure-ftpd
             systemctl restart pure-ftpd
             ;;
@@ -132,4 +173,6 @@ main() {
     start_service
 }
 
-main "$@"
+if [[ -z "${BASH_SOURCE[0]:-}" || "${BASH_SOURCE[0]:-}" == "$0" ]]; then
+    main "$@"
+fi

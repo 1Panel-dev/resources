@@ -102,14 +102,14 @@ detect_os() {
     [[ -r /etc/os-release ]] || { log ERROR "/etc/os-release is missing"; exit 1; }
     # shellcheck disable=SC1091
     . /etc/os-release
-    OS="${ID:-}"; OS_LIKE="${ID_LIKE:-}"; VERSION="${VERSION_ID:-unknown}"
+    OS="$(printf '%s' "${ID:-}" | tr '[:upper:]' '[:lower:]')"; OS_LIKE="${ID_LIKE:-}"; VERSION="${VERSION_ID:-unknown}"
     VERSION_MAJOR="${VERSION%%.*}"
     [[ "$VERSION_MAJOR" =~ ^[0-9]+$ ]] || VERSION_MAJOR=0
     case "$OS" in
         ubuntu|debian|linuxmint|pop)
             OS_FAMILY="debian"
             ;;
-        rhel|centos|rocky|almalinux|fedora|ol|amzn)
+        rhel|centos|rocky|almalinux|fedora|ol|amzn|tencentos|opencloudos|ctyunos)
             OS_FAMILY="rhel"
             ;;
         *)
@@ -125,7 +125,7 @@ detect_os() {
     esac
     if [[ "$OS_FAMILY" == debian ]]; then
         AVAILABLE_FIREWALLS=(iptables nftables ufw)
-    elif (( VERSION_MAJOR >= 9 )); then
+    elif (( VERSION_MAJOR >= 9 )) || [[ "$OS" == tencentos || "$OS" == opencloudos || "$OS" == ctyunos ]]; then
         AVAILABLE_FIREWALLS=(nftables firewalld iptables)
         IPTABLES_DEPRECATED=true
     else
@@ -286,7 +286,13 @@ install_firewall() {
                 log INFO "iptables and its persistence service are already installed"
                 return
             fi
-            if (( VERSION_MAJOR >= 9 )) || [[ "$OS" == fedora ]]; then
+            if [[ "$OS" == tencentos || "$OS" == opencloudos || "$OS" == ctyunos ]]; then
+                if "$pkg" -q list iptables-nft-services >/dev/null 2>&1; then
+                    run "$pkg" install -y iptables-nft iptables-nft-services
+                else
+                    run "$pkg" install -y iptables-services
+                fi
+            elif (( VERSION_MAJOR >= 9 )) || [[ "$OS" == fedora ]]; then
                 run "$pkg" install -y iptables-nft iptables-nft-services
             else
                 run "$pkg" install -y iptables-services
