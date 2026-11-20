@@ -127,3 +127,19 @@ recipes:
       tr: "DeepSeek-V4-Flash-Vision-Exp'yi dört adet RTX PRO 5000 72G üzerinde uzman paralelliği, 256K bağlam, FP8 KV önbelleği ve FULL_AND_PIECEWISE CUDA grafikleri ile çalıştır"
       zh-hant: "在四張 RTX PRO 5000 72G 上執行 DeepSeek-V4-Flash-Vision-Exp，啟用專家並行、256K 上下文、FP8 KV 快取及 FULL_AND_PIECEWISE CUDA 圖"
       zh: "在四张 RTX PRO 5000 72G 上运行 DeepSeek-V4-Flash-Vision-Exp，启用专家并行、256K 上下文、FP8 KV 缓存及 FULL_AND_PIECEWISE CUDA 图"
+  - key: run-qwen3.8-flash-next-nvfp4-on-4-rtx-pro-5000-72g
+    sort: 90
+    name: "Qwen3.8-Flash-Next-NVFP4 (4 GPUs)"
+    imageType: nvidia
+    model: "nvidia/Qwen3.8-Flash-Next-NVFP4"
+    description:
+      en: "Run Qwen3.8-Flash-Next-NVFP4 on four RTX PRO 5000 72G GPUs with expert parallelism, FP8 KV cache and high-concurrency scheduling"
+      es-es: "Ejecuta Qwen3.8-Flash-Next-NVFP4 en cuatro GPU RTX PRO 5000 de 72G con paralelismo de expertos, caché KV FP8 y planificación de alta concurrencia"
+      ja: "4 基の RTX PRO 5000 72G で Qwen3.8-Flash-Next-NVFP4 を実行。エキスパート並列、FP8 KV キャッシュ、高並列スケジューリングを使用"
+      ko: "RTX PRO 5000 72G 4장에서 전문가 병렬화, FP8 KV 캐시 및 고동시성 스케줄링으로 Qwen3.8-Flash-Next-NVFP4 실행"
+      ms: "Jalankan Qwen3.8-Flash-Next-NVFP4 pada empat RTX PRO 5000 72G dengan keselarian pakar, cache KV FP8 dan penjadualan konkurensi tinggi"
+      pt-br: "Execute Qwen3.8-Flash-Next-NVFP4 em quatro RTX PRO 5000 de 72G com paralelismo de especialistas, cache KV FP8 e agendamento de alta concorrência"
+      ru: "Запуск Qwen3.8-Flash-Next-NVFP4 на четырёх RTX PRO 5000 72G с параллелизмом экспертов, KV-кэшем FP8 и планированием с высокой конкурентностью"
+      tr: "Qwen3.8-Flash-Next-NVFP4'ü dört adet RTX PRO 5000 72G üzerinde uzman paralelliği, FP8 KV önbelleği ve yüksek eşzamanlılık zamanlaması ile çalıştır"
+      zh-hant: "在四張 RTX PRO 5000 72G 上執行 Qwen3.8-Flash-Next-NVFP4，啟用專家並行、FP8 KV 快取及高並行調度"
+      zh: "在四张 RTX PRO 5000 72G 上运行 Qwen3.8-Flash-Next-NVFP4，启用专家并行、FP8 KV 缓存及高并发调度"
