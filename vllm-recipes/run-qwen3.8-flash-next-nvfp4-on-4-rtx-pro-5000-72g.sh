@@ -10,7 +10,7 @@ docker run --gpus all \
   --moe-backend marlin \
   --kv-cache-dtype fp8 \
   --attention-config.indexer_kv_dtype fp8 \
-  --max-num-seqs 256 \
+  --max-num-seqs 64 \
   --max-num-batched-tokens 8192 \
   --enable-prefix-caching \
   --enable-prompt-tokens-details \
